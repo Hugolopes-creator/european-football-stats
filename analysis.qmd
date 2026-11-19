@@ -1,0 +1,252 @@
+---
+title: "Position, Age, and Efficiency Analysis"
+toc: true
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+
+players <- read_delim(
+  "2021-2022 Football Player Stats.csv",
+  delim = ";",
+  locale = locale(encoding = "latin1"),
+  show_col_types = FALSE
+) |>
+  filter(!is.na(Age)) |>
+  mutate(
+    Primary_Pos = factor(
+      str_sub(Pos, 1, 2),
+      levels = c("FW", "MF", "DF", "GK"),
+      labels = c(
+        "Forward (FW)",
+        "Midfielder (MF)",
+        "Defender (DF)",
+        "Goalkeeper (GK)"
+      )
+    ),
+    Total_Goals = round(Goals * `90s`),
+    Total_Assists = round(Assists * `90s`),
+    Total_GC = Total_Goals + Total_Assists,
+    GC_per_90 = round(Goals + Assists, 2)
+  )
+```
+
+## 1. Player Age vs. Goal Contributions (2,703 Outfield Players)
+
+Hover over any dot to inspect an individual outfield player's age, club, position, and season goal contributions.
+
+```{r}
+set.seed(42)
+
+p_age_gc <- players |>
+  filter(Primary_Pos != "Goalkeeper (GK)") |>
+  mutate(
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, ")<br>",
+      "Age: ", Age, "<br>",
+      "Goal Contributions: ", Total_GC, " (", Total_Goals, "G, ", Total_Assists, "A)<br>",
+      "Efficiency (G+A per 90): ", GC_per_90, "<br>",
+      "Position: ", Pos
+    )
+  ) |>
+  ggplot(aes(
+    x = Total_GC,
+    y = Age,
+    color = Primary_Pos,
+    text = hover_text
+  )) +
+  geom_jitter(width = 0.25, height = 0.2, alpha = 0.7, size = 2.2) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Player Age vs. Total Goal Contributions (2021–2022)",
+    x = "Goal Contributions (Goals + Assists)",
+    y = "Age",
+    color = "Position"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggplotly(p_age_gc, tooltip = "text") |>
+  layout(legend = list(orientation = "h", y = -0.18))
+```
+
+## 2. Goal Contribution Efficiency by Age Across Positions
+
+To measure per-minute efficiency without tiny-sample distortions, this chart shows all **1,518 outfield players** who played at least 10 full 90-minute matches (`90s >= 10`, or 900+ minutes).
+
+```{r}
+eff_age_pos <- players |>
+  filter(Primary_Pos != "Goalkeeper (GK)", `90s` >= 10) |>
+  mutate(
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, ")<br>",
+      "Position: ", Pos, "<br>",
+      "Age: ", Age, "<br>",
+      "Efficiency (G+A per 90): ", GC_per_90, "<br>",
+      "Total Goal Contributions: ", Total_GC, " (", Total_Goals, "G, ", Total_Assists, "A)"
+    )
+  ) |>
+  ggplot(aes(
+    x = Age,
+    y = GC_per_90,
+    color = Primary_Pos,
+    size = Total_GC,
+    text = hover_text
+  )) +
+  geom_point(alpha = 0.7) +
+  facet_wrap(~ Primary_Pos, scales = "free_y") +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Goal Contribution Efficiency (G+A per 90) by Age Across Positions",
+    x = "Age",
+    y = "Goal Contributions per 90 Minutes",
+    color = "Position"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "none")
+
+ggplotly(eff_age_pos, tooltip = "text")
+```
+
+## 3. Distribution of Goal Contributions by Position and Age
+
+```{r}
+players |>
+  filter(Min >= 450) |>
+  ggplot(aes(x = Primary_Pos, y = Total_GC, fill = Primary_Pos)) +
+  geom_violin(alpha = 0.35, color = NA, trim = TRUE) +
+  geom_boxplot(width = 0.22, outlier.alpha = 0.35, color = "gray20") +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    shape = 23,
+    size = 3.5,
+    fill = "white",
+    color = "black"
+  ) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    title = "Distribution of Goal Contributions by Primary Position (2021–2022)",
+    subtitle = "Players with at least 450 minutes played (white diamond = position mean)",
+    x = "Primary Position",
+    y = "Total Goal Contributions (Goals + Assists)",
+    caption = "Source: 2021–2022 Football Player Stats (FBref / Kaggle)"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none")
+```
+
+```{r}
+age_summary <- players |>
+  filter(Min >= 450) |>
+  summarize(
+    Mean_GC = mean(Total_GC),
+    Players = n(),
+    .by = Age
+  )
+
+ggplot(age_summary, aes(x = Age, y = Mean_GC)) +
+  geom_col(fill = "#2b8cbe", alpha = 0.85, width = 0.75) +
+  geom_smooth(method = "loess", se = FALSE, color = "#e34a33", linewidth = 1.2) +
+  scale_x_continuous(breaks = seq(16, 42, by = 2)) +
+  labs(
+    title = "Average Goal Contributions by Player Age (2021–2022)",
+    subtitle = "Mean season goal contributions (Goals + Assists) with smoothed age curve (Min >= 450)",
+    x = "Player Age",
+    y = "Average Goal Contributions (Goals + Assists)",
+    caption = "Source: 2021–2022 Football Player Stats (FBref / Kaggle)"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+## 4. Top 20 Most Efficient Players by Position
+
+### Forwards (FW)
+
+```{r}
+fw_eff <- players |>
+  filter(Primary_Pos == "Forward (FW)", `90s` >= 10) |>
+  slice_max(order_by = GC_per_90, n = 20, with_ties = FALSE) |>
+  mutate(
+    Player_Label = fct_reorder(paste0(Player, " (", Squad, ")"), GC_per_90),
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, ")<br>",
+      "Age: ", Age, "<br>",
+      "G+A per 90: ", GC_per_90, "<br>",
+      "Total Goal Contributions: ", Total_GC, " (", Total_Goals, "G, ", Total_Assists, "A)<br>",
+      "90s Played: ", `90s`
+    )
+  ) |>
+  ggplot(aes(x = GC_per_90, y = Player_Label, fill = Age, text = hover_text)) +
+  geom_col() +
+  scale_fill_viridis_c(option = "plasma", end = 0.9) +
+  labs(
+    title = "Top 20 Most Efficient Forwards (G+A per 90 Mins)",
+    x = "Goal Contributions per 90 Minutes",
+    y = NULL,
+    fill = "Age"
+  ) +
+  theme_minimal(base_size = 11)
+
+ggplotly(fw_eff, tooltip = "text")
+```
+
+### Midfielders (MF)
+
+```{r}
+mf_eff <- players |>
+  filter(Primary_Pos == "Midfielder (MF)", `90s` >= 10) |>
+  slice_max(order_by = GC_per_90, n = 20, with_ties = FALSE) |>
+  mutate(
+    Player_Label = fct_reorder(paste0(Player, " (", Squad, ")"), GC_per_90),
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, ")<br>",
+      "Age: ", Age, "<br>",
+      "G+A per 90: ", GC_per_90, "<br>",
+      "Total Goal Contributions: ", Total_GC, " (", Total_Goals, "G, ", Total_Assists, "A)<br>",
+      "90s Played: ", `90s`
+    )
+  ) |>
+  ggplot(aes(x = GC_per_90, y = Player_Label, fill = Age, text = hover_text)) +
+  geom_col() +
+  scale_fill_viridis_c(option = "viridis", end = 0.9) +
+  labs(
+    title = "Top 20 Most Efficient Midfielders (G+A per 90 Mins)",
+    x = "Goal Contributions per 90 Minutes",
+    y = NULL,
+    fill = "Age"
+  ) +
+  theme_minimal(base_size = 11)
+
+ggplotly(mf_eff, tooltip = "text")
+```
+
+### Defenders (DF)
+
+```{r}
+df_eff <- players |>
+  filter(Primary_Pos == "Defender (DF)", `90s` >= 10) |>
+  slice_max(order_by = GC_per_90, n = 20, with_ties = FALSE) |>
+  mutate(
+    Player_Label = fct_reorder(paste0(Player, " (", Squad, ")"), GC_per_90),
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, ")<br>",
+      "Age: ", Age, "<br>",
+      "G+A per 90: ", GC_per_90, "<br>",
+      "Total Goal Contributions: ", Total_GC, " (", Total_Goals, "G, ", Total_Assists, "A)<br>",
+      "90s Played: ", `90s`
+    )
+  ) |>
+  ggplot(aes(x = GC_per_90, y = Player_Label, fill = Age, text = hover_text)) +
+  geom_col() +
+  scale_fill_viridis_c(option = "mako", end = 0.85) +
+  labs(
+    title = "Top 20 Most Efficient Defenders (G+A per 90 Mins)",
+    x = "Goal Contributions per 90 Minutes",
+    y = NULL,
+    fill = "Age"
+  ) +
+  theme_minimal(base_size = 11)
+
+ggplotly(df_eff, tooltip = "text")
+```

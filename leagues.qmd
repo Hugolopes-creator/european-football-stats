@@ -1,0 +1,162 @@
+---
+title: "Leagues & Clubs: Attacking Pace Across Europe"
+toc: true
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+
+# Load dataset and compute individual season totals from per-90 rates
+players <- read_delim(
+  "2021-2022 Football Player Stats.csv",
+  delim = ";",
+  locale = locale(encoding = "latin1"),
+  show_col_types = FALSE
+) |>
+  filter(!is.na(Age), !is.na(Min)) |>
+  mutate(
+    Total_Goals = round(Goals * `90s`),
+    Total_Assists = round(Assists * `90s`),
+    Total_GC = Total_Goals + Total_Assists,
+    Total_Shots = round(Shots * `90s`),
+    Total_Press = Press * `90s`
+  )
+
+# Aggregate player stats up to the 98 clubs across the Big 5 leagues
+# Bundesliga has 18 teams (34 matches); the other 4 leagues have 20 teams (38 matches)
+clubs <- players |>
+  summarize(
+    Matches = if_else(first(Comp) == "Bundesliga", 34, 38),
+    Squad_Goals = sum(Total_Goals, na.rm = TRUE),
+    Squad_Assists = sum(Total_Assists, na.rm = TRUE),
+    Squad_Shots = sum(Total_Shots, na.rm = TRUE),
+    Goals_Per_Match = round(Squad_Goals / Matches, 2),
+    Shots_Per_Match = round(Squad_Shots / Matches, 1),
+    Press_Per_Match = round(sum(Total_Press, na.rm = TRUE) / Matches, 1),
+    Scorers_5plus = sum(Total_Goals >= 5),
+    Top_Player = Player[which.max(Total_GC)],
+    Top_Player_Goals = Total_Goals[which.max(Total_GC)],
+    Top_Player_GC = max(Total_GC),
+    .by = c(Comp, Squad)
+  )
+```
+
+Europe's "Big Five" domestic leagues share elite talent, yet they play noticeably different styles of football. Because the **Bundesliga** features 18 clubs playing **34 matches** each while the **Premier League**, **La Liga**, **Serie A**, and **Ligue 1** have 20 clubs playing **38 matches**, comparing raw season totals would undercount German clubs. Normalizing each squad's output on a **per-match** basis reveals how leagues and clubs truly separate.
+
+## 1. Which League Plays the Most Open, High-Scoring Football?
+
+Across all 98 clubs, the Bundesliga averaged **1.52 player-scored goals per team per match** (over 3.0 combined goals in a typical fixture), ahead of Serie A (1.38), the Premier League (1.36), and Ligue 1 (1.36). Spanish **La Liga** was Europe's tightest defensive competition at **1.22 goals per team per match**.
+
+```{r}
+p_league_dist <- clubs |>
+  mutate(
+    Comp = fct_reorder(Comp, Goals_Per_Match, .fun = median),
+    hover_text = paste0(
+      "<b>", Squad, "</b> (", Comp, ")<br>",
+      "Goals per Match: <b>", Goals_Per_Match, "</b> (", Squad_Goals, " in ", Matches, " matches)<br>",
+      "Shots per Match: ", Shots_Per_Match, "<br>",
+      "Top Contributor: ", Top_Player, " (", Top_Player_GC, " G+A)"
+    )
+  ) |>
+  ggplot(aes(x = Comp, y = Goals_Per_Match, color = Comp)) +
+  geom_boxplot(width = 0.38, alpha = 0.2, outlier.shape = NA) +
+  geom_jitter(aes(text = hover_text), width = 0.14, size = 2.6, alpha = 0.8) +
+  coord_flip() +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Club Scoring Rate Across Europe's Top Five Leagues (2021–2022)",
+    x = NULL,
+    y = "Squad Goals Scored per Match"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+
+ggplotly(p_league_dist, tooltip = "text", height = 430)
+```
+
+## 2. Pressing Intensity vs. Scoring Output Across All 98 Clubs
+
+Do teams score more by pressing opponents high up the pitch, or by dominating possession? Plotting **presses per match** against **goals per match** highlights a striking tactical divide: possession powerhouses like **Manchester City** (2.53 goals/match, just 111.3 presses/match) rarely need to press because they keep the ball, whereas **Liverpool**, **Bayern Munich**, and **RB Leipzig** combine relentless pressing with elite scoring. Hover over any dot to inspect a club, or click league names in the legend to isolate specific competitions.
+
+```{r}
+p_club_style <- clubs |>
+  mutate(
+    hover_text = paste0(
+      "<b>", Squad, "</b> (", Comp, ")<br>",
+      "Goals per Match: <b>", Goals_Per_Match, "</b> (", Squad_Goals, " total goals)<br>",
+      "Presses per Match: ", Press_Per_Match, "<br>",
+      "Players with 5+ Goals: ", Scorers_5plus, "<br>",
+      "Top Star: ", Top_Player, " (", Top_Player_GC, " G+A)"
+    )
+  ) |>
+  ggplot(aes(
+    x = Press_Per_Match,
+    y = Goals_Per_Match,
+    color = Comp,
+    size = Squad_Goals,
+    text = hover_text
+  )) +
+  geom_point(alpha = 0.78) +
+  scale_color_brewer(palette = "Set1") +
+  labs(
+    title = "Club Pressing Intensity vs. Goals Scored per Match",
+    x = "Team Defensive Presses per Match",
+    y = "Team Goals Scored per Match",
+    color = "League"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggplotly(p_club_style, tooltip = "text", height = 500) |>
+  layout(legend = list(orientation = "h", y = -0.18))
+```
+
+## 3. Star Dependence vs. Shared Scoring Among Europe's Top 15 Attacks
+
+Even among Europe's highest-scoring clubs, goals are distributed very differently. **Bayern Munich** (2.71 goals/match) and **Real Madrid** (2.11 goals/match) leaned heavily on Ballon d'Or contenders Robert Lewandowski (35 league goals) and Karim Benzema (27 league goals), whereas **Manchester City** won the Premier League with **eight different players scoring 5+ goals** and no single player exceeding 15.
+
+```{r}
+top15_long <- clubs |>
+  slice_max(order_by = Goals_Per_Match, n = 15, with_ties = FALSE) |>
+  mutate(
+    Rest_of_Squad_Goals = Squad_Goals - Top_Player_Goals,
+    Squad_Label = fct_reorder(paste0(Squad, " (", Comp, ")"), Squad_Goals)
+  ) |>
+  pivot_longer(
+    cols = c(Top_Player_Goals, Rest_of_Squad_Goals),
+    names_to = "Source",
+    values_to = "Goals"
+  ) |>
+  mutate(
+    Source_Label = if_else(
+      Source == "Top_Player_Goals",
+      "Top Contributor's Goals",
+      "Rest of Squad Goals"
+    ),
+    hover_text = if_else(
+      Source == "Top_Player_Goals",
+      paste0("<b>", Squad, "</b><br>Top Star: ", Top_Player, " (", Goals, " Goals, ", Top_Player_GC, " G+A)"),
+      paste0("<b>", Squad, "</b><br>Rest of Squad: ", Goals, " Goals<br>Players with 5+ Goals: ", Scorers_5plus)
+    )
+  )
+
+p_top15 <- ggplot(
+  top15_long,
+  aes(x = Goals, y = Squad_Label, fill = Source_Label, text = hover_text)
+) +
+  geom_col(width = 0.72) +
+  scale_fill_manual(values = c(
+    "Rest of Squad Goals" = "#6baed6",
+    "Top Contributor's Goals" = "#d94801"
+  )) +
+  labs(
+    title = "Season Goals Breakdown: Top Star vs. Rest of Squad (Top 15 Clubs)",
+    x = "Total Player Goals in League Play (2021–2022)",
+    y = NULL,
+    fill = NULL
+  ) +
+  theme_minimal(base_size = 11)
+
+ggplotly(p_top15, tooltip = "text", height = 500) |>
+  layout(legend = list(orientation = "h", y = -0.16))
+```

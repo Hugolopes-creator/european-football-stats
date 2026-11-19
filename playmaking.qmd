@@ -1,0 +1,165 @@
+---
+title: "Finishers & Playmakers: How Stars Create Goals"
+toc: true
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+
+# Filter to regular outfield players (at least 10 full 90-minute matches, or 900+ minutes)
+# so per-90 shooting and playmaking rates are not distorted by tiny sample sizes
+outfield <- read_delim(
+  "2021-2022 Football Player Stats.csv",
+  delim = ";",
+  locale = locale(encoding = "latin1"),
+  show_col_types = FALSE
+) |>
+  filter(!is.na(Age), `90s` >= 10) |>
+  mutate(
+    Primary_Pos = factor(
+      str_sub(Pos, 1, 2),
+      levels = c("FW", "MF", "DF", "GK"),
+      labels = c(
+        "Forward (FW)",
+        "Midfielder (MF)",
+        "Defender (DF)",
+        "Goalkeeper (GK)"
+      )
+    ),
+    Total_Goals = round(Goals * `90s`),
+    Total_Assists = round(Assists * `90s`),
+    Total_GC = Total_Goals + Total_Assists
+  ) |>
+  filter(Primary_Pos != "Goalkeeper (GK)")
+```
+
+Raw goal and assist totals tell us *how much* a player produced, but underlying FBref tracking stats show *how* they produced it. Across the **1,518 outfield regulars** who logged at least 900 minutes (`90s >= 10`), European football's best attackers split into distinct tactical archetypes: high-volume target men, clinical counter-attackers, deep-lying passers, and electric ball-carrying wingers.
+
+## 1. Volume Shooters vs. Clinical Finishers (10+ Goal Scorers)
+
+Among players who scored at least **10 league goals** in 2021–2022, two paths to the Golden Boot stand out. Volume strikers like **Robert Lewandowski** (4.80 shots/90, 35 goals) and **Mohamed Salah** (4.36 shots/90, 23 goals) generate relentless shot attempts, whereas clinical finishers like **Son Heung-min** (2.57 shots/90, converting **27%** of his non-penalty shots for 23 goals) and **Wissam Ben Yedder** (2.31 shots/90, **26%** conversion, 25 goals) score nearly as often on roughly half the shot volume.
+
+```{r}
+scorers <- outfield |>
+  filter(Total_Goals >= 10, !is.na(`G/Sh`), !is.na(`SoT%`)) |>
+  mutate(
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, " — ", Comp, ")<br>",
+      "Season Goals: <b>", Total_Goals, "</b> (", `90s`, " 90s)<br>",
+      "Shots per 90: ", Shots, " | Shots on Target: ", `SoT%`, "%<br>",
+      "Non-Penalty Goals per Shot (G/Sh): <b>", `G/Sh`, "</b><br>",
+      "Average Shot Distance: ", ShoDist, " yards"
+    )
+  )
+
+p_finish <- ggplot(
+  scorers,
+  aes(
+    x = Shots,
+    y = `G/Sh`,
+    size = Total_Goals,
+    color = Comp,
+    text = hover_text
+  )
+) +
+  geom_hline(
+    yintercept = median(scorers$`G/Sh`),
+    linetype = "dashed",
+    color = "gray55"
+  ) +
+  geom_vline(
+    xintercept = median(scorers$Shots),
+    linetype = "dashed",
+    color = "gray55"
+  ) +
+  geom_point(alpha = 0.78) +
+  scale_color_brewer(palette = "Set1") +
+  labs(
+    title = "Shot Volume vs. Conversion Rate (Players with 10+ League Goals)",
+    x = "Shots Taken per 90 Minutes",
+    y = "Non-Penalty Goals per Shot (G/Sh)",
+    color = "League"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggplotly(p_finish, tooltip = "text", height = 480) |>
+  layout(legend = list(orientation = "h", y = -0.18))
+```
+
+## 2. Attacking Archetypes: Pure Poachers, Playmakers, and Complete Superstars
+
+FBref's **Shot-Creating Actions (`SCA`)** measures the two offensive actions—such as live passes, dribbles, or fouled take-ons—directly leading to a shot. Plotting **Shots per 90** against **SCA per 90** separates Europe's attacking regulars into clear roles:
+
+- **Top-Left (Pure Creators):** **Dimitri Payet** (6.53 SCA/90), **Kevin De Bruyne** (5.67 SCA/90), and fullback **Trent Alexander-Arnold** (4.73 SCA/90) orchestrate attacks for teammates rather than shooting frequently themselves.
+- **Bottom-Right (Box Poachers):** Strikers like **Ciro Immobile** and **Erling Haaland** focus their touches on finishing inside the penalty area.
+- **Top-Right (Dual-Threat Superstars):** **Kylian Mbappé** (4.29 shots/90, 5.12 SCA/90), **Karim Benzema**, and **Lionel Messi** both finish and create at elite rates.
+
+```{r}
+p_archetype <- outfield |>
+  filter(Total_GC >= 8) |>
+  mutate(
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, " — ", Comp, ")<br>",
+      "Position: ", Pos, " | Goal Contributions: <b>", Total_GC, "</b> (",
+      Total_Goals, "G, ", Total_Assists, "A)<br>",
+      "Shots per 90: ", Shots, "<br>",
+      "Shot-Creating Actions (SCA) per 90: <b>", SCA, "</b>"
+    )
+  ) |>
+  ggplot(aes(
+    x = Shots,
+    y = SCA,
+    color = Primary_Pos,
+    size = Total_GC,
+    text = hover_text
+  )) +
+  geom_point(alpha = 0.72) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Shots per 90 vs. Shot-Creating Actions per 90 (Players with 8+ G+A)",
+    x = "Shots per 90 Minutes",
+    y = "Shot-Creating Actions (SCA) per 90 Minutes",
+    color = "Position"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggplotly(p_archetype, tooltip = "text", height = 490) |>
+  layout(legend = list(orientation = "h", y = -0.18))
+```
+
+## 3. Ball Progression Styles: Passers vs. Ball-Carriers
+
+Before a shot or assist even happens, teams have to move the ball toward the opponent's goal. Comparing **Progressive Passes per 90 (`PasProg`)**—completed passes moving the ball at least 10 yards closer to goal—with **Progressive Carries per 90 (`CarProg`)**—dribbles moving the ball toward goal—reveals two completely different ways to break down defenses. Electric wingers like **Vinícius Júnior** (14.2 progressive carries/90) and **Allan Saint-Maximin** drive past defenders at their feet, deep playmakers like **Toni Kroos** and **Trent Alexander-Arnold** (8.77 progressive passes/90) slice lines with passing, and **Lionel Messi** sits in a corner almost by himself (10.2 progressive passes/90 *and* 12.1 progressive carries/90).
+
+```{r}
+p_prog <- outfield |>
+  filter(PasProg >= 4.5 | CarProg >= 6.5) |>
+  mutate(
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, " — ", Comp, ")<br>",
+      "Position: ", Pos, " | Age: ", Age, "<br>",
+      "Progressive Passes per 90: <b>", PasProg, "</b><br>",
+      "Progressive Carries per 90: <b>", CarProg, "</b><br>",
+      "Shot-Creating Actions per 90: ", SCA, " | Total Assists: ", Total_Assists
+    )
+  ) |>
+  ggplot(aes(
+    x = PasProg,
+    y = CarProg,
+    color = Primary_Pos,
+    text = hover_text
+  )) +
+  geom_point(alpha = 0.75, size = 2.6) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    title = "Elite Ball Progressors: Progressive Passes vs. Progressive Carries per 90",
+    x = "Progressive Passes per 90 Minutes (PasProg)",
+    y = "Progressive Carries per 90 Minutes (CarProg)",
+    color = "Position"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggplotly(p_prog, tooltip = "text", height = 490) |>
+  layout(legend = list(orientation = "h", y = -0.18))
+```

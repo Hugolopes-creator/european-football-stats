@@ -1,0 +1,15 @@
+---
+title: "About"
+---
+
+## About Me
+
+Hi, I'm **Hugo Lopes**, a student at [New College of Florida](https://www.ncf.edu/). I created this website as my final project for [*Kane's Free Data Science Course*](https://bootcamp.davidkane.info/).
+
+- **Email:** [hugoorlandolopes06@gmail.com](mailto:hugoorlandolopes06@gmail.com)
+- **GitHub Account:** [Hugolopes-creator](https://github.com/Hugolopes-creator)
+- **Project Repository:** [https://github.com/Hugolopes-creator/european-football-stats](https://github.com/Hugolopes-creator/european-football-stats)
+
+## Data Source
+
+This project uses the **2021–2022 Football Player Stats** dataset, compiled from match and season statistics on [FBref](https://fbref.com/) and hosted on [Kaggle](https://www.kaggle.com/datasets/vivovinco/20212022-football-player-stats). The dataset covers 2,921 player-squad records across Europe's Top Five domestic leagues—the English Premier League, Spanish La Liga, Italian Serie A, German Bundesliga, and French Ligue 1—capturing playing time, goals, assists, shooting accuracy, passing progression, and defensive actions per 90 minutes.

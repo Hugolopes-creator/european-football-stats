@@ -1,0 +1,29 @@
+project:
+  type: website
+
+website:
+  title: "European Football Analytics (2021–2022)"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: leagues.qmd
+        text: Leagues & Clubs
+      - href: analysis.qmd
+        text: Position & Age
+      - href: playmaking.qmd
+        text: Finishers & Playmakers
+      - href: explorer.qmd
+        text: Scouting Explorer
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme: cosmo
+    toc: false
+
+execute:
+  echo: false
+  message: false
+  warning: false

@@ -1,0 +1,136 @@
+---
+title: "Player Scouting Explorer"
+---
+
+Use the interactive filters below to scout **2,920 players** across Europe's Top Five leagues in 2021–2022. Try narrowing the **Age** slider to `16–22` to find U-22 breakout stars, selecting a specific **Club** or **League**, or sorting the table below by **G+A**, **SCA/90** (Shot-Creating Actions), **Prog Pass/90**, or **Tkl+Int/90** (Tackles + Interceptions) to compare two-way midfielders, attacking fullbacks, and clinical strikers.
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(DT)
+library(crosstalk)
+
+# Select only the scouting columns needed so the static HTML page loads fast
+scouting_df <- read_delim(
+  "2021-2022 Football Player Stats.csv",
+  delim = ";",
+  locale = locale(encoding = "latin1"),
+  show_col_types = FALSE
+) |>
+  filter(!is.na(Age), !is.na(Min)) |>
+  mutate(
+    Position = factor(
+      str_sub(Pos, 1, 2),
+      levels = c("FW", "MF", "DF", "GK"),
+      labels = c("Forward", "Midfielder", "Defender", "Goalkeeper")
+    ),
+    Goals_Tot = round(Goals * `90s`),
+    Assists_Tot = round(Assists * `90s`),
+    GA_Tot = Goals_Tot + Assists_Tot,
+    GA_per_90 = round(Goals + Assists, 2),
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, " — ", Comp, ")<br>",
+      "Position: ", Pos, " | Age: ", Age, " | Min: ", scales::comma(Min), "<br>",
+      "Season Totals: <b>", GA_Tot, " G+A</b> (", Goals_Tot, "G, ", Assists_Tot, "A)<br>",
+      "Per 90: ", GA_per_90, " G+A | ", SCA, " SCA | ", `Tkl+Int`, " Tkl+Int"
+    )
+  ) |>
+  select(
+    Player,
+    Squad,
+    Comp,
+    Position,
+    Age,
+    Min,
+    Goals_Tot,
+    Assists_Tot,
+    GA_Tot,
+    GA_per_90,
+    SCA,
+    PasProg,
+    CarProg,
+    `Tkl+Int`,
+    hover_text
+  ) |>
+  arrange(desc(GA_Tot), desc(Min))
+
+# SharedData links the filter controls to both the Plotly chart and the DT table
+shared_players <- SharedData$new(scouting_df)
+```
+
+```{r}
+bscols(
+  widths = c(3, 3, 6),
+  filter_checkbox("league", "League", shared_players, ~Comp),
+  filter_checkbox("pos", "Primary Position", shared_players, ~Position),
+  list(
+    filter_select("club", "Filter by Club (Optional)", shared_players, ~Squad),
+    filter_slider("age", "Age Range", shared_players, ~Age, step = 1, width = "100%"),
+    filter_slider("min", "Minutes Played", shared_players, ~Min, step = 90, width = "100%")
+  )
+)
+```
+
+### Interactive Scouting Map: Chance Creation vs. Defensive Work Rate
+
+Hover over any dot to inspect a player, drag a box on the chart to highlight a group of players in the table below, or double-click to reset your selection.
+
+```{r}
+p_scout <- plot_ly(
+  shared_players,
+  x = ~`Tkl+Int`,
+  y = ~SCA,
+  color = ~Position,
+  colors = "Dark2",
+  type = "scatter",
+  mode = "markers",
+  text = ~hover_text,
+  hoverinfo = "text",
+  marker = list(size = 7, opacity = 0.72),
+  height = 440
+) |>
+  layout(
+    xaxis = list(title = "Tackles + Interceptions per 90 Minutes (Defensive Work Rate)"),
+    yaxis = list(title = "Shot-Creating Actions per 90 Minutes (Attacking Creation)"),
+    legend = list(orientation = "h", y = -0.18)
+  ) |>
+  highlight(on = "plotly_selected", off = "plotly_deselect")
+
+p_scout
+```
+
+### Searchable & Sortable Player Database
+
+Click any column header to sort (hold `Shift` to sort by multiple columns), or use the search box on the right to look up any player or club directly.
+
+```{r}
+datatable(
+  shared_players,
+  rownames = FALSE,
+  extensions = "Scroller",
+  options = list(
+    pageLength = 15,
+    scrollX = TRUE,
+    columnDefs = list(
+      list(visible = FALSE, targets = 14) # Hide hover_text helper column
+    )
+  ),
+  colnames = c(
+    "Player",
+    "Club",
+    "League",
+    "Position",
+    "Age",
+    "Minutes",
+    "Goals",
+    "Assists",
+    "G+A",
+    "G+A/90",
+    "SCA/90",
+    "Prog Pass/90",
+    "Prog Carry/90",
+    "Tkl+Int/90",
+    "hover_text"
+  )
+)
+```

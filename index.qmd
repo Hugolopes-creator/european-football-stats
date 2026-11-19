@@ -1,0 +1,95 @@
+---
+title: "Goal Contributions Across Europe's Top Five Football Leagues (2021–2022)"
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+
+# Load 2021-2022 Football Player Stats (semicolon-delimited, latin1 encoding)
+players <- read_delim(
+  "2021-2022 Football Player Stats.csv",
+  delim = ";",
+  locale = locale(encoding = "latin1"),
+  show_col_types = FALSE
+) |>
+  filter(!is.na(Age), !is.na(Min)) |>
+  mutate(
+    Primary_Pos = factor(
+      str_sub(Pos, 1, 2),
+      levels = c("FW", "MF", "DF", "GK"),
+      labels = c(
+        "Forward (FW)",
+        "Midfielder (MF)",
+        "Defender (DF)",
+        "Goalkeeper (GK)"
+      )
+    ),
+    Total_Goals = round(Goals * `90s`),
+    Total_Assists = round(Assists * `90s`),
+    Total_GC = Total_Goals + Total_Assists,
+    GC_per_90 = round(Goals + Assists, 2),
+    hover_text = paste0(
+      "<b>", Player, "</b> (", Squad, " — ", Comp, ")<br>",
+      "Position: ", Pos, " | Age: ", Age, "<br>",
+      "Minutes Played: ", scales::comma(Min), " (", `90s`, " 90s)<br>",
+      "Goal Contributions: <b>", Total_GC, "</b> (",
+      Total_Goals, " Goals, ", Total_Assists, " Assists)<br>",
+      "Efficiency (G+A per 90): ", GC_per_90
+    )
+  )
+
+set.seed(42)
+
+p_home <- players |>
+  ggplot(aes(
+    x = Min,
+    y = Total_GC,
+    color = Primary_Pos,
+    text = hover_text
+  )) +
+  geom_jitter(width = 0, height = 0.22, alpha = 0.65, size = 1.9) +
+  scale_x_continuous(labels = scales::comma) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(
+    x = "Season Minutes Played",
+    y = "Total Goal Contributions (Goals + Assists)",
+    color = "Primary Position"
+  ) +
+  theme_minimal(base_size = 13)
+
+ggplotly(p_home, tooltip = "text", height = 560) |>
+  layout(
+    title = list(
+      text = paste0(
+        "<b>Forwards Turn Playing Time Into Goals and Assists Far Faster Than Other Positions</b>",
+        "<br><sup>Each dot represents one of 2,920 players across Europe's Top 5 leagues in 2021–2022 (hover for player stats)</sup>"
+      ),
+      x = 0,
+      xref = "paper"
+    ),
+    margin = list(t = 75, b = 95),
+    legend = list(orientation = "h", x = 0.1, y = -0.16),
+    annotations = list(
+      list(
+        x = 1,
+        y = -0.23,
+         text = "Source: 2021–2022 Football Player Stats (FBref / Kaggle)",
+        showarrow = FALSE,
+        xref = "paper",
+        yref = "paper",
+        xanchor = "right",
+        font = list(size = 11, color = "gray40")
+      )
+    )
+  )
+```
+
+Across **2,920 individual players** in the Premier League, La Liga, Serie A, Bundesliga, and Ligue 1 during the 2021–2022 season, total goal contributions (goals plus assists) rise steadily with playing time, but the rate of production depends heavily on position. Elite forwards separate sharply from the rest of the field—led by Kylian Mbappé (46 goal contributions), Karim Benzema (39), Robert Lewandowski (38), and Mohamed Salah (36)—while midfielders form a middle tier and defenders and goalkeepers rarely exceed five contributions even with over 3,000 minutes played.
+
+### Explore the Site
+
+- **[Leagues & Clubs](leagues.qmd):** Compare scoring pace, pressing intensity, and star dependence across all 98 clubs in Europe's Big Five leagues.
+- **[Position & Age](analysis.qmd):** Examine how primary position and age shape total output and per-90 efficiency.
+- **[Finishers & Playmakers](playmaking.qmd):** Break down clinical shot conversion (`G/Sh`), Shot-Creating Actions (`SCA`), and progressive passing vs. ball-carrying.
+- **[Scouting Explorer](explorer.qmd):** Filter by league, club, position, age, and minutes played to scout and compare any player in the database.
