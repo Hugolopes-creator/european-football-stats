@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Goal Contributions Across Europe’s Top Five Football Leagues (2021–2022)",
+    "section": "",
+    "text": "Across 2,920 individual players in the Premier League, La Liga, Serie A, Bundesliga, and Ligue 1 during the 2021–2022 season, total goal contributions (goals plus assists) rise steadily with playing time, but the rate of production depends heavily on position. Elite forwards separate sharply from the rest of the field—led by Kylian Mbappé (46 goal contributions), Karim Benzema (39), Robert Lewandowski (38), and Mohamed Salah (36)—while midfielders form a middle tier and defenders and goalkeepers rarely exceed five contributions even with over 3,000 minutes played.\n\nExplore the Site\n\nLeagues & Clubs: Compare scoring pace, pressing intensity, and star dependence across all 98 clubs in Europe’s Big Five leagues.\nPosition & Age: Examine how primary position and age shape total output and per-90 efficiency.\nFinishers & Playmakers: Break down clinical shot conversion (G/Sh), Shot-Creating Actions (SCA), and progressive passing vs. ball-carrying.\nScouting Explorer: Filter by league, club, position, age, and minutes played to scout and compare any player in the database."
+  },
+  {
+    "objectID": "explorer.html",
+    "href": "explorer.html",
+    "title": "Player Scouting Explorer",
+    "section": "",
+    "text": "Use the interactive filters below to scout 2,920 players across Europe’s Top Five leagues in 2021–2022. Try narrowing the Age slider to 16–22 to find U-22 breakout stars, selecting a specific Club or League, or sorting the table below by G+A, SCA/90 (Shot-Creating Actions), Prog Pass/90, or Tkl+Int/90 (Tackles + Interceptions) to compare two-way midfielders, attacking fullbacks, and clinical strikers.\n\n\n\n\n\n\nLeague\n\n\n\n\nBundesliga\n\n\n\n\n\nLa Liga\n\n\n\n\n\nLigue 1\n\n\n\n\n\nPremier League\n\n\n\n\n\nSerie A\n\n\n\n\n\n\n\n\nPrimary Position\n\n\n\n\nForward\n\n\n\n\n\nMidfielder\n\n\n\n\n\nDefender\n\n\n\n\n\nGoalkeeper\n\n\n\n\n\n\n\n\nFilter by Club (Optional)\n\n\n\n\n\n\nAge Range\n\n\n\n\nMinutes Played\n\n\n\n\n\n\n\n\n\nInteractive Scouting Map: Chance Creation vs. Defensive Work Rate\nHover over any dot to inspect a player, drag a box on the chart to highlight a group of players in the table below, or double-click to reset your selection.\n\n\n\n\n\n\n\n\nSearchable & Sortable Player Database\nClick any column header to sort (hold Shift to sort by multiple columns), or use the search box on the right to look up any player or club directly."
+  },
+  {
+    "objectID": "playmaking.html",
+    "href": "playmaking.html",
+    "title": "Finishers & Playmakers: How Stars Create Goals",
+    "section": "",
+    "text": "Raw goal and assist totals tell us how much a player produced, but underlying FBref tracking stats show how they produced it. Across the 1,518 outfield regulars who logged at least 900 minutes (90s &gt;= 10), European football’s best attackers split into distinct tactical archetypes: high-volume target men, clinical counter-attackers, deep-lying passers, and electric ball-carrying wingers."
+  },
+  {
+    "objectID": "playmaking.html#volume-shooters-vs.-clinical-finishers-10-goal-scorers",
+    "href": "playmaking.html#volume-shooters-vs.-clinical-finishers-10-goal-scorers",
+    "title": "Finishers & Playmakers: How Stars Create Goals",
+    "section": "1. Volume Shooters vs. Clinical Finishers (10+ Goal Scorers)",
+    "text": "1. Volume Shooters vs. Clinical Finishers (10+ Goal Scorers)\nAmong players who scored at least 10 league goals in 2021–2022, two paths to the Golden Boot stand out. Volume strikers like Robert Lewandowski (4.80 shots/90, 35 goals) and Mohamed Salah (4.36 shots/90, 23 goals) generate relentless shot attempts, whereas clinical finishers like Son Heung-min (2.57 shots/90, converting 27% of his non-penalty shots for 23 goals) and Wissam Ben Yedder (2.31 shots/90, 26% conversion, 25 goals) score nearly as often on roughly half the shot volume."
+  },
+  {
+    "objectID": "playmaking.html#attacking-archetypes-pure-poachers-playmakers-and-complete-superstars",
+    "href": "playmaking.html#attacking-archetypes-pure-poachers-playmakers-and-complete-superstars",
+    "title": "Finishers & Playmakers: How Stars Create Goals",
+    "section": "2. Attacking Archetypes: Pure Poachers, Playmakers, and Complete Superstars",
+    "text": "2. Attacking Archetypes: Pure Poachers, Playmakers, and Complete Superstars\nFBref’s Shot-Creating Actions (SCA) measures the two offensive actions—such as live passes, dribbles, or fouled take-ons—directly leading to a shot. Plotting Shots per 90 against SCA per 90 separates Europe’s attacking regulars into clear roles:\n\nTop-Left (Pure Creators): Dimitri Payet (6.53 SCA/90), Kevin De Bruyne (5.67 SCA/90), and fullback Trent Alexander-Arnold (4.73 SCA/90) orchestrate attacks for teammates rather than shooting frequently themselves.\nBottom-Right (Box Poachers): Strikers like Ciro Immobile and Erling Haaland focus their touches on finishing inside the penalty area.\nTop-Right (Dual-Threat Superstars): Kylian Mbappé (4.29 shots/90, 5.12 SCA/90), Karim Benzema, and Lionel Messi both finish and create at elite rates."
+  },
+  {
+    "objectID": "playmaking.html#ball-progression-styles-passers-vs.-ball-carriers",
+    "href": "playmaking.html#ball-progression-styles-passers-vs.-ball-carriers",
+    "title": "Finishers & Playmakers: How Stars Create Goals",
+    "section": "3. Ball Progression Styles: Passers vs. Ball-Carriers",
+    "text": "3. Ball Progression Styles: Passers vs. Ball-Carriers\nBefore a shot or assist even happens, teams have to move the ball toward the opponent’s goal. Comparing Progressive Passes per 90 (PasProg)—completed passes moving the ball at least 10 yards closer to goal—with Progressive Carries per 90 (CarProg)—dribbles moving the ball toward goal—reveals two completely different ways to break down defenses. Electric wingers like Vinícius Júnior (14.2 progressive carries/90) and Allan Saint-Maximin drive past defenders at their feet, deep playmakers like Toni Kroos and Trent Alexander-Arnold (8.77 progressive passes/90) slice lines with passing, and Lionel Messi sits in a corner almost by himself (10.2 progressive passes/90 and 12.1 progressive carries/90)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m Hugo Lopes, a student at New College of Florida. I created this website as my final project for Kane’s Free Data Science Course.\n\nEmail: hugoorlandolopes06@gmail.com\nGitHub Account: Hugolopes-creator\nProject Repository: https://github.com/Hugolopes-creator/european-football-stats"
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m Hugo Lopes, a student at New College of Florida. I created this website as my final project for Kane’s Free Data Science Course.\n\nEmail: hugoorlandolopes06@gmail.com\nGitHub Account: Hugolopes-creator\nProject Repository: https://github.com/Hugolopes-creator/european-football-stats"
+  },
+  {
+    "objectID": "about.html#data-source",
+    "href": "about.html#data-source",
+    "title": "About",
+    "section": "Data Source",
+    "text": "Data Source\nThis project uses the 2021–2022 Football Player Stats dataset, compiled from match and season statistics on FBref and hosted on Kaggle. The dataset covers 2,921 player-squad records across Europe’s Top Five domestic leagues—the English Premier League, Spanish La Liga, Italian Serie A, German Bundesliga, and French Ligue 1—capturing playing time, goals, assists, shooting accuracy, passing progression, and defensive actions per 90 minutes."
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Position, Age, and Efficiency Analysis",
+    "section": "",
+    "text": "Hover over any dot to inspect an individual outfield player’s age, club, position, and season goal contributions."
+  },
+  {
+    "objectID": "analysis.html#player-age-vs.-goal-contributions-2703-outfield-players",
+    "href": "analysis.html#player-age-vs.-goal-contributions-2703-outfield-players",
+    "title": "Position, Age, and Efficiency Analysis",
+    "section": "",
+    "text": "Hover over any dot to inspect an individual outfield player’s age, club, position, and season goal contributions."
+  },
+  {
+    "objectID": "analysis.html#goal-contribution-efficiency-by-age-across-positions",
+    "href": "analysis.html#goal-contribution-efficiency-by-age-across-positions",
+    "title": "Position, Age, and Efficiency Analysis",
+    "section": "2. Goal Contribution Efficiency by Age Across Positions",
+    "text": "2. Goal Contribution Efficiency by Age Across Positions\nTo measure per-minute efficiency without tiny-sample distortions, this chart shows all 1,518 outfield players who played at least 10 full 90-minute matches (90s &gt;= 10, or 900+ minutes)."
+  },
+  {
+    "objectID": "analysis.html#distribution-of-goal-contributions-by-position-and-age",
+    "href": "analysis.html#distribution-of-goal-contributions-by-position-and-age",
+    "title": "Position, Age, and Efficiency Analysis",
+    "section": "3. Distribution of Goal Contributions by Position and Age",
+    "text": "3. Distribution of Goal Contributions by Position and Age"
+  },
+  {
+    "objectID": "analysis.html#top-20-most-efficient-players-by-position",
+    "href": "analysis.html#top-20-most-efficient-players-by-position",
+    "title": "Position, Age, and Efficiency Analysis",
+    "section": "4. Top 20 Most Efficient Players by Position",
+    "text": "4. Top 20 Most Efficient Players by Position\n\nForwards (FW)\n\n\n\n\n\n\n\n\nMidfielders (MF)\n\n\n\n\n\n\n\n\nDefenders (DF)"
+  },
+  {
+    "objectID": "leagues.html",
+    "href": "leagues.html",
+    "title": "Leagues & Clubs: Attacking Pace Across Europe",
+    "section": "",
+    "text": "Europe’s “Big Five” domestic leagues share elite talent, yet they play noticeably different styles of football. Because the Bundesliga features 18 clubs playing 34 matches each while the Premier League, La Liga, Serie A, and Ligue 1 have 20 clubs playing 38 matches, comparing raw season totals would undercount German clubs. Normalizing each squad’s output on a per-match basis reveals how leagues and clubs truly separate."
+  },
+  {
+    "objectID": "leagues.html#which-league-plays-the-most-open-high-scoring-football",
+    "href": "leagues.html#which-league-plays-the-most-open-high-scoring-football",
+    "title": "Leagues & Clubs: Attacking Pace Across Europe",
+    "section": "1. Which League Plays the Most Open, High-Scoring Football?",
+    "text": "1. Which League Plays the Most Open, High-Scoring Football?\nAcross all 98 clubs, the Bundesliga averaged 1.52 player-scored goals per team per match (over 3.0 combined goals in a typical fixture), ahead of Serie A (1.38), the Premier League (1.36), and Ligue 1 (1.36). Spanish La Liga was Europe’s tightest defensive competition at 1.22 goals per team per match."
+  },
+  {
+    "objectID": "leagues.html#pressing-intensity-vs.-scoring-output-across-all-98-clubs",
+    "href": "leagues.html#pressing-intensity-vs.-scoring-output-across-all-98-clubs",
+    "title": "Leagues & Clubs: Attacking Pace Across Europe",
+    "section": "2. Pressing Intensity vs. Scoring Output Across All 98 Clubs",
+    "text": "2. Pressing Intensity vs. Scoring Output Across All 98 Clubs\nDo teams score more by pressing opponents high up the pitch, or by dominating possession? Plotting presses per match against goals per match highlights a striking tactical divide: possession powerhouses like Manchester City (2.53 goals/match, just 111.3 presses/match) rarely need to press because they keep the ball, whereas Liverpool, Bayern Munich, and RB Leipzig combine relentless pressing with elite scoring. Hover over any dot to inspect a club, or click league names in the legend to isolate specific competitions."
+  },
+  {
+    "objectID": "leagues.html#star-dependence-vs.-shared-scoring-among-europes-top-15-attacks",
+    "href": "leagues.html#star-dependence-vs.-shared-scoring-among-europes-top-15-attacks",
+    "title": "Leagues & Clubs: Attacking Pace Across Europe",
+    "section": "3. Star Dependence vs. Shared Scoring Among Europe’s Top 15 Attacks",
+    "text": "3. Star Dependence vs. Shared Scoring Among Europe’s Top 15 Attacks\nEven among Europe’s highest-scoring clubs, goals are distributed very differently. Bayern Munich (2.71 goals/match) and Real Madrid (2.11 goals/match) leaned heavily on Ballon d’Or contenders Robert Lewandowski (35 league goals) and Karim Benzema (27 league goals), whereas Manchester City won the Premier League with eight different players scoring 5+ goals and no single player exceeding 15."
+  }
+]

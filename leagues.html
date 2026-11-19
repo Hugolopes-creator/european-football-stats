@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Leagues &amp; Clubs: Attacking Pace Across Europe – European Football Analytics (2021–2022)</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-977607561cd60f84a551947bb62c3781.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.12.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">European Football Analytics (2021–2022)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./leagues.html" aria-current="page"> 
+<span class="menu-text">Leagues &amp; Clubs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./analysis.html"> 
+<span class="menu-text">Position &amp; Age</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./playmaking.html"> 
+<span class="menu-text">Finishers &amp; Playmakers</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./explorer.html"> 
+<span class="menu-text">Scouting Explorer</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#which-league-plays-the-most-open-high-scoring-football" id="toc-which-league-plays-the-most-open-high-scoring-football" class="nav-link active" data-scroll-target="#which-league-plays-the-most-open-high-scoring-football">1. Which League Plays the Most Open, High-Scoring Football?</a></li>
+  <li><a href="#pressing-intensity-vs.-scoring-output-across-all-98-clubs" id="toc-pressing-intensity-vs.-scoring-output-across-all-98-clubs" class="nav-link" data-scroll-target="#pressing-intensity-vs.-scoring-output-across-all-98-clubs">2. Pressing Intensity vs.&nbsp;Scoring Output Across All 98 Clubs</a></li>
+  <li><a href="#star-dependence-vs.-shared-scoring-among-europes-top-15-attacks" id="toc-star-dependence-vs.-shared-scoring-among-europes-top-15-attacks" class="nav-link" data-scroll-target="#star-dependence-vs.-shared-scoring-among-europes-top-15-attacks">3. Star Dependence vs.&nbsp;Shared Scoring Among Europe’s Top 15 Attacks</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Leagues &amp; Clubs: Attacking Pace Across Europe</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Europe’s “Big Five” domestic leagues share elite talent, yet they play noticeably different styles of football. Because the <strong>Bundesliga</strong> features 18 clubs playing <strong>34 matches</strong> each while the <strong>Premier League</strong>, <strong>La Liga</strong>, <strong>Serie A</strong>, and <strong>Ligue 1</strong> have 20 clubs playing <strong>38 matches</strong>, comparing raw season totals would undercount German clubs. Normalizing each squad’s output on a <strong>per-match</strong> basis reveals how leagues and clubs truly separate.</p>
+<section id="which-league-plays-the-most-open-high-scoring-football" class="level2">
+<h2 class="anchored" data-anchor-id="which-league-plays-the-most-open-high-scoring-football">1. Which League Plays the Most Open, High-Scoring Football?</h2>
+<p>Across all 98 clubs, the Bundesliga averaged <strong>1.52 player-scored goals per team per match</strong> (over 3.0 combined goals in a typical fixture), ahead of Serie A (1.38), the Premier League (1.36), and Ligue 1 (1.36). Spanish <strong>La Liga</strong> was Europe’s tightest defensive competition at <strong>1.22 goals per team per match</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-78ecf0f62c4a8f7e378b" style="width:100%;height:415px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-78ecf0f62c4a8f7e378b">{"x":{"data":[{"x":[1.79,1,1.6100000000000001,1.3400000000000001,1.1799999999999999,1.6299999999999999,1.05,0.92000000000000004,1.1299999999999999,0.96999999999999997,0.76000000000000001,2.1099999999999999,0.87,1.03,1.05,1.1100000000000001,1.6599999999999999,0.83999999999999997,1.3400000000000001,1.03],"y":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"hoverinfo":"x","type":"box","fillcolor":"rgba(255,255,255,0.2)","boxpoints":false,"marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"},"size":5.6692913385826778},"line":{"color":"rgba(27,158,119,1)","width":1.8897637795275593},"name":"La Liga","legendgroup":"La Liga","showlegend":true,"xaxis":"x","yaxis":"y","orientation":"h","frame":null},{"x":[0.55000000000000004,1.6299999999999999,2.4700000000000002,1.6599999999999999,0.92000000000000004,1.21,1.1100000000000001,1.05,1.0800000000000001,2.5299999999999998,1.1100000000000001,1.5800000000000001,0.87,1.0800000000000001,1.3200000000000001,1.47,1.53,0.83999999999999997,1.3200000000000001,1.97],"y":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],"hoverinfo":"x","type":"box","fillcolor":"rgba(255,255,255,0.2)","boxpoints":false,"marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"},"size":5.6692913385826778},"line":{"color":"rgba(217,95,2,1)","width":1.8897637795275593},"name":"Premier League","legendgroup":"Premier League","showlegend":true,"xaxis":"x","yaxis":"y","orientation":"h","frame":null},{"x":[0.89000000000000001,1.5800000000000001,1.0800000000000001,0.94999999999999996,2.1299999999999999,0.87,1.6100000000000001,1.0800000000000001,1.1100000000000001,1.3899999999999999,1.3200000000000001,1.1799999999999999,2.3199999999999998,1.47,1.26,1.71,1.6299999999999999,0.92000000000000004,1.3700000000000001,1.26],"y":[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"hoverinfo":"x","type":"box","fillcolor":"rgba(255,255,255,0.2)","boxpoints":false,"marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"},"size":5.6692913385826778},"line":{"color":"rgba(117,112,179,1)","width":1.8897637795275593},"name":"Ligue 1","legendgroup":"Ligue 1","showlegend":true,"xaxis":"x","yaxis":"y","orientation":"h","frame":null},{"x":[0.76000000000000001,2.21,1.6200000000000001,1.47,0.76000000000000001,1.24,1.0900000000000001,1.26,1.4399999999999999,2.3799999999999999,1.53,2.71,1.1499999999999999,1.6200000000000001,1.03,2.1200000000000001,1.1799999999999999,1.5900000000000001],"y":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],"hoverinfo":"x","type":"box","fillcolor":"rgba(255,255,255,0.2)","boxpoints":false,"marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"},"size":5.6692913385826778},"line":{"color":"rgba(231,41,138,1)","width":1.8897637795275593},"name":"Bundesliga","legendgroup":"Bundesliga","showlegend":true,"xaxis":"x","yaxis":"y","orientation":"h","frame":null},{"x":[1.1299999999999999,1.53,0.89000000000000001,1.95,0.68000000000000005,0.89000000000000001,1.55,1.1100000000000001,1.1299999999999999,2.1800000000000002,1.47,0.83999999999999997,1,1.74,1.53,1.6599999999999999,1.95,1.6299999999999999,1.24,1.5800000000000001],"y":[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],"hoverinfo":"x","type":"box","fillcolor":"rgba(255,255,255,0.2)","boxpoints":false,"marker":{"opacity":null,"outliercolor":"rgba(0,0,0,1)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"},"size":5.6692913385826778},"line":{"color":"rgba(102,166,30,1)","width":1.8897637795275593},"name":"Serie A","legendgroup":"Serie A","showlegend":true,"xaxis":"x","yaxis":"y","orientation":"h","frame":null},{"x":[1.1290128768458962,1.3366360988654198,0.75652633364871158,1.0473803510908037,1.7929644080549478,0.99970840659923854,1.1065304444059731,0.91988605756126351,1.6105090386159719,2.1061652088463307,1.6286480202525853,1.1839677119627594,0.84079230993241072,0.86701872634515176,0.97191223352402445,1.02868133764714,1.338527180420235,1.0279327235724778,1.0461319388169796,1.6567199301421642],"y":[0.86300816643051803,1.0572716343309729,0.86741559191606932,1.1136144317034633,1.0828451673686503,1.0488768866937608,0.97160098819993435,0.89576299133710557,1.0851985903084278,0.97136507255025206,1.0565699893422424,0.87223720216192302,0.97449900974519554,0.9166087727993727,0.94085205730050803,1.1219103598408402,0.98982850838452574,1.0656963466946037,1.0852284987084568,1.1209362685400992],"text":["<b>Granada<\/b> (La Liga)<br>Goals per Match: <b>1.13<\/b> (43 in 38 matches)<br>Shots per Match: 11.2<br>Top Contributor: Jorge Molina (15 G+A)","<b>Sevilla<\/b> (La Liga)<br>Goals per Match: <b>1.34<\/b> (51 in 38 matches)<br>Shots per Match: 11.4<br>Top Contributor: Rafa Mir (10 G+A)","<b>Alavés<\/b> (La Liga)<br>Goals per Match: <b>0.76<\/b> (29 in 38 matches)<br>Shots per Match: 10<br>Top Contributor: Joselu (18 G+A)","<b>Athletic Club<\/b> (La Liga)<br>Goals per Match: <b>1.05<\/b> (40 in 38 matches)<br>Shots per Match: 12.2<br>Top Contributor: Iker Muniain (14 G+A)","<b>Barcelona<\/b> (La Liga)<br>Goals per Match: <b>1.79<\/b> (68 in 38 matches)<br>Shots per Match: 13.7<br>Top Contributor: Ousmane Dembélé (14 G+A)","<b>Rayo Vallecano<\/b> (La Liga)<br>Goals per Match: <b>1<\/b> (38 in 38 matches)<br>Shots per Match: 13.2<br>Top Contributor: Óscar Trejo (12 G+A)","<b>Celta Vigo<\/b> (La Liga)<br>Goals per Match: <b>1.11<\/b> (42 in 38 matches)<br>Shots per Match: 10.7<br>Top Contributor: Iago Aspas (22 G+A)","<b>Cádiz<\/b> (La Liga)<br>Goals per Match: <b>0.92<\/b> (35 in 38 matches)<br>Shots per Match: 10.8<br>Top Contributor: Anthony Lozano (9 G+A)","<b>Betis<\/b> (La Liga)<br>Goals per Match: <b>1.61<\/b> (61 in 38 matches)<br>Shots per Match: 13.5<br>Top Contributor: Juanmi (20 G+A)","<b>Real Madrid<\/b> (La Liga)<br>Goals per Match: <b>2.11<\/b> (80 in 38 matches)<br>Shots per Match: 17.2<br>Top Contributor: Karim Benzema (39 G+A)","<b>Villarreal<\/b> (La Liga)<br>Goals per Match: <b>1.63<\/b> (62 in 38 matches)<br>Shots per Match: 12<br>Top Contributor: Arnaut Groeneveld (13 G+A)","<b>Valencia<\/b> (La Liga)<br>Goals per Match: <b>1.18<\/b> (45 in 38 matches)<br>Shots per Match: 10.4<br>Top Contributor: Gonçalo Guedes (17 G+A)","<b>Getafe<\/b> (La Liga)<br>Goals per Match: <b>0.84<\/b> (32 in 38 matches)<br>Shots per Match: 10.6<br>Top Contributor: Enes Ünal (17 G+A)","<b>Mallorca<\/b> (La Liga)<br>Goals per Match: <b>0.87<\/b> (33 in 38 matches)<br>Shots per Match: 11.5<br>Top Contributor: Vedat Muriqi (8 G+A)","<b>Osasuna<\/b> (La Liga)<br>Goals per Match: <b>0.97<\/b> (37 in 38 matches)<br>Shots per Match: 11.2<br>Top Contributor: Ante Budimir (10 G+A)","<b>Elche<\/b> (La Liga)<br>Goals per Match: <b>1.03<\/b> (39 in 38 matches)<br>Shots per Match: 8.8<br>Top Contributor: Fidel (11 G+A)","<b>Levante<\/b> (La Liga)<br>Goals per Match: <b>1.34<\/b> (51 in 38 matches)<br>Shots per Match: 11.3<br>Top Contributor: José Luis Morales (20 G+A)","<b>Espanyol<\/b> (La Liga)<br>Goals per Match: <b>1.03<\/b> (39 in 38 matches)<br>Shots per Match: 10.6<br>Top Contributor: Raúl de Tomás (20 G+A)","<b>Real Sociedad<\/b> (La Liga)<br>Goals per Match: <b>1.05<\/b> (40 in 38 matches)<br>Shots per Match: 11.5<br>Top Contributor: Mikel Oyarzabal (12 G+A)","<b>Atlético Madrid<\/b> (La Liga)<br>Goals per Match: <b>1.66<\/b> (63 in 38 matches)<br>Shots per Match: 12.1<br>Top Contributor: Ángel Correa (17 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(27,158,119,1)","opacity":0.80000000000000004,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(27,158,119,1)"}},"hoveron":"points","name":"La Liga","legendgroup":"La Liga","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.55390636085346334,1.0784751556087286,0.91762863516621296,1.2130158266909419,2.5303936484660952,1.6291022762842475,2.4737059498392049,1.1083816403578968,1.6575568800438196,1.0825680620260536,1.9672186244502663,1.047372879460454,1.3233827517107128,1.5296687305476517,1.3202088364157827,1.5820836632475257,1.1103207986652852,0.87355633006431155,1.4681401284839959,0.84383632176928214],"y":[1.9535042370297016,1.9623891547042875,1.9346159670315684,1.9481796191539615,1.9607162507064642,1.9979201823007315,1.9763084704242646,1.9171554069127887,2.1359876790363344,1.9741881050914527,1.9894391596503556,1.890435636807233,1.8914376224484295,2.1046531077381223,1.8625756782013922,1.8659283994790166,2.0130948628392069,1.9927335992176085,2.1043424144387246,2.0507442655041812],"text":["<b>Norwich City<\/b> (Premier League)<br>Goals per Match: <b>0.55<\/b> (21 in 38 matches)<br>Shots per Match: 9.8<br>Top Contributor: Teemu Pukki (14 G+A)","<b>Southampton<\/b> (Premier League)<br>Goals per Match: <b>1.08<\/b> (41 in 38 matches)<br>Shots per Match: 12.7<br>Top Contributor: James Ward-Prowse (15 G+A)","<b>Wolves<\/b> (Premier League)<br>Goals per Match: <b>0.92<\/b> (35 in 38 matches)<br>Shots per Match: 10.6<br>Top Contributor: Raúl Jiménez (10 G+A)","<b>Brentford<\/b> (Premier League)<br>Goals per Match: <b>1.21<\/b> (46 in 38 matches)<br>Shots per Match: 11.6<br>Top Contributor: Ivan Toney (17 G+A)","<b>Manchester City<\/b> (Premier League)<br>Goals per Match: <b>2.53<\/b> (96 in 38 matches)<br>Shots per Match: 18.5<br>Top Contributor: Kevin De Bruyne (23 G+A)","<b>Leicester City<\/b> (Premier League)<br>Goals per Match: <b>1.63<\/b> (62 in 38 matches)<br>Shots per Match: 11.5<br>Top Contributor: James Maddison (20 G+A)","<b>Liverpool<\/b> (Premier League)<br>Goals per Match: <b>2.47<\/b> (94 in 38 matches)<br>Shots per Match: 19<br>Top Contributor: Mohamed Salah (36 G+A)","<b>Everton<\/b> (Premier League)<br>Goals per Match: <b>1.11<\/b> (42 in 38 matches)<br>Shots per Match: 11.3<br>Top Contributor: Richarlison (15 G+A)","<b>Tottenham<\/b> (Premier League)<br>Goals per Match: <b>1.66<\/b> (63 in 38 matches)<br>Shots per Match: 12.9<br>Top Contributor: Son Heung-min (30 G+A)","<b>Newcastle Utd<\/b> (Premier League)<br>Goals per Match: <b>1.08<\/b> (41 in 38 matches)<br>Shots per Match: 11.7<br>Top Contributor: Allan Saint-Maximin (10 G+A)","<b>Chelsea<\/b> (Premier League)<br>Goals per Match: <b>1.97<\/b> (75 in 38 matches)<br>Shots per Match: 15.4<br>Top Contributor: Mason Mount (21 G+A)","<b>Brighton<\/b> (Premier League)<br>Goals per Match: <b>1.05<\/b> (40 in 38 matches)<br>Shots per Match: 12.7<br>Top Contributor: Leandro Trossard (11 G+A)","<b>Crystal Palace<\/b> (Premier League)<br>Goals per Match: <b>1.32<\/b> (50 in 38 matches)<br>Shots per Match: 10.6<br>Top Contributor: Wilfried Zaha (15 G+A)","<b>West Ham<\/b> (Premier League)<br>Goals per Match: <b>1.53<\/b> (58 in 38 matches)<br>Shots per Match: 11.7<br>Top Contributor: Jarrod Bowen (22 G+A)","<b>Aston Villa<\/b> (Premier League)<br>Goals per Match: <b>1.32<\/b> (50 in 38 matches)<br>Shots per Match: 12.1<br>Top Contributor: Danny Ings (13 G+A)","<b>Arsenal<\/b> (Premier League)<br>Goals per Match: <b>1.58<\/b> (60 in 38 matches)<br>Shots per Match: 15.3<br>Top Contributor: Bukayo Saka (18 G+A)","<b>Leeds United<\/b> (Premier League)<br>Goals per Match: <b>1.11<\/b> (42 in 38 matches)<br>Shots per Match: 12.8<br>Top Contributor: Raphael Dias Belloli (14 G+A)","<b>Watford<\/b> (Premier League)<br>Goals per Match: <b>0.87<\/b> (33 in 38 matches)<br>Shots per Match: 10.5<br>Top Contributor: Emmanuel Dennis (16 G+A)","<b>Manchester Utd<\/b> (Premier League)<br>Goals per Match: <b>1.47<\/b> (56 in 38 matches)<br>Shots per Match: 13.3<br>Top Contributor: Cristiano Ronaldo (21 G+A)","<b>Burnley<\/b> (Premier League)<br>Goals per Match: <b>0.84<\/b> (32 in 38 matches)<br>Shots per Match: 10.7<br>Top Contributor: Maxwel Cornet (10 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(217,95,2,1)","opacity":0.80000000000000004,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(217,95,2,1)"}},"hoveron":"points","name":"Premier League","legendgroup":"Premier League","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.1068955074790867,0.95267263935320068,0.88942326749488709,1.0817970766089857,2.1312960759121924,1.3926279845908283,1.3180082577671857,1.2570792623702438,1.6332125487998126,1.4674838476963341,0.87359625693596887,1.0782670488711448,1.6069801475666465,1.3674958495628091,1.183129904879257,1.7082973946910351,0.91837219645455492,1.5800787510573864,2.3166816593166439,1.2622034163493663],"y":[3.005099476343021,2.9424933970719578,2.8926593348570169,3.1201571923028677,2.932903618197888,2.9129621620010586,3.1162512713670729,2.955661060269922,2.9369580412469802,2.8900075355824084,3.0213882068730893,3.1389191057812424,3.0786104512400927,2.9051621647085994,3.0806886095926167,2.958577211415395,3.0419124817382546,3.1113130807504059,2.9791890729684383,3.0471114774886519],"text":["<b>Reims<\/b> (Ligue 1)<br>Goals per Match: <b>1.11<\/b> (42 in 38 matches)<br>Shots per Match: 10.3<br>Top Contributor: Hugo Ekitike (13 G+A)","<b>Clermont Foot<\/b> (Ligue 1)<br>Goals per Match: <b>0.95<\/b> (36 in 38 matches)<br>Shots per Match: 11.5<br>Top Contributor: Mohamed Bayo (19 G+A)","<b>Lorient<\/b> (Ligue 1)<br>Goals per Match: <b>0.89<\/b> (34 in 38 matches)<br>Shots per Match: 11.6<br>Top Contributor: Terem Moffi (12 G+A)","<b>Saint-Étienne<\/b> (Ligue 1)<br>Goals per Match: <b>1.08<\/b> (41 in 38 matches)<br>Shots per Match: 11.6<br>Top Contributor: Denis Bouanga (15 G+A)","<b>Rennes<\/b> (Ligue 1)<br>Goals per Match: <b>2.13<\/b> (81 in 38 matches)<br>Shots per Match: 14.5<br>Top Contributor: Martin Terrier (24 G+A)","<b>Nantes<\/b> (Ligue 1)<br>Goals per Match: <b>1.39<\/b> (53 in 38 matches)<br>Shots per Match: 11.1<br>Top Contributor: Randal Kolo Muani (16 G+A)","<b>Bordeaux<\/b> (Ligue 1)<br>Goals per Match: <b>1.32<\/b> (50 in 38 matches)<br>Shots per Match: 11.7<br>Top Contributor: Hwang Ui-jo (13 G+A)","<b>Brest<\/b> (Ligue 1)<br>Goals per Match: <b>1.26<\/b> (48 in 38 matches)<br>Shots per Match: 10.6<br>Top Contributor: Franck Honorat (15 G+A)","<b>Monaco<\/b> (Ligue 1)<br>Goals per Match: <b>1.63<\/b> (62 in 38 matches)<br>Shots per Match: 11.8<br>Top Contributor: Wissam Ben Yedder (30 G+A)","<b>Strasbourg<\/b> (Ligue 1)<br>Goals per Match: <b>1.47<\/b> (56 in 38 matches)<br>Shots per Match: 12.5<br>Top Contributor: Ludovic Ajorque (20 G+A)","<b>Metz<\/b> (Ligue 1)<br>Goals per Match: <b>0.87<\/b> (33 in 38 matches)<br>Shots per Match: 9.7<br>Top Contributor: Nicolas de Préville (7 G+A)","<b>Angers<\/b> (Ligue 1)<br>Goals per Match: <b>1.08<\/b> (41 in 38 matches)<br>Shots per Match: 10.2<br>Top Contributor: Sofiane Boufal (12 G+A)","<b>Marseille<\/b> (Ligue 1)<br>Goals per Match: <b>1.61<\/b> (61 in 38 matches)<br>Shots per Match: 12.9<br>Top Contributor: Dimitri Payet (22 G+A)","<b>Nice<\/b> (Ligue 1)<br>Goals per Match: <b>1.37<\/b> (52 in 38 matches)<br>Shots per Match: 11.8<br>Top Contributor: Amine Gouiri (19 G+A)","<b>Lille<\/b> (Ligue 1)<br>Goals per Match: <b>1.18<\/b> (45 in 38 matches)<br>Shots per Match: 12.2<br>Top Contributor: Jonathan David (15 G+A)","<b>Lyon<\/b> (Ligue 1)<br>Goals per Match: <b>1.71<\/b> (65 in 38 matches)<br>Shots per Match: 14.4<br>Top Contributor: Moussa Dembélé (25 G+A)","<b>Troyes<\/b> (Ligue 1)<br>Goals per Match: <b>0.92<\/b> (35 in 38 matches)<br>Shots per Match: 10.1<br>Top Contributor: Xavier Chavalerin (7 G+A)","<b>Lens<\/b> (Ligue 1)<br>Goals per Match: <b>1.58<\/b> (60 in 38 matches)<br>Shots per Match: 13.5<br>Top Contributor: Jonathan Clauss (16 G+A)","<b>Paris S-G<\/b> (Ligue 1)<br>Goals per Match: <b>2.32<\/b> (88 in 38 matches)<br>Shots per Match: 14.7<br>Top Contributor: Kylian Mbappé (46 G+A)","<b>Montpellier<\/b> (Ligue 1)<br>Goals per Match: <b>1.26<\/b> (48 in 38 matches)<br>Shots per Match: 11.4<br>Top Contributor: Téji Savanier (15 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(117,112,179,1)","opacity":0.80000000000000004,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(117,112,179,1)"}},"hoveron":"points","name":"Ligue 1","legendgroup":"Ligue 1","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.75726768745109441,1.2575383518822492,2.1210299821477383,1.6177378369569779,2.2077353910002859,1.1773655637204647,2.3832141519207504,1.526341308809817,0.75631621834822005,1.0326999349743127,1.0873276720549914,1.243011138556525,1.4706871842630207,1.4425266193933783,1.1507988156918436,1.5913240297883751,2.7129271293375639,1.6192582280300558],"y":[4.0606412430945786,3.9556096966657788,3.9795983986649661,4.042860535122454,3.9638760694209485,4.1129325066227462,3.9722122298553586,3.8771069717966018,4.1180147393327209,4.1300708009768279,4.0105550000723449,3.9306070772185921,3.8645483290776612,4.1299635198060427,4.0284330146200951,4.0888536121882497,4.0303724367078395,3.9816492583416401],"text":["<b>Greuther Fürth<\/b> (Bundesliga)<br>Goals per Match: <b>0.76<\/b> (26 in 34 matches)<br>Shots per Match: 9.1<br>Top Contributor: Branimir Hrgota (14 G+A)","<b>Eint Frankfurt<\/b> (Bundesliga)<br>Goals per Match: <b>1.26<\/b> (43 in 34 matches)<br>Shots per Match: 13.1<br>Top Contributor: Filip Kosti? (13 G+A)","<b>RB Leipzig<\/b> (Bundesliga)<br>Goals per Match: <b>2.12<\/b> (72 in 34 matches)<br>Shots per Match: 12.8<br>Top Contributor: Christopher Nkunku (33 G+A)","<b>Hoffenheim<\/b> (Bundesliga)<br>Goals per Match: <b>1.62<\/b> (55 in 34 matches)<br>Shots per Match: 13.4<br>Top Contributor: Andrej Kramari? (15 G+A)","<b>Leverkusen<\/b> (Bundesliga)<br>Goals per Match: <b>2.21<\/b> (75 in 34 matches)<br>Shots per Match: 13.3<br>Top Contributor: Patrik Schick (27 G+A)","<b>Stuttgart<\/b> (Bundesliga)<br>Goals per Match: <b>1.18<\/b> (40 in 34 matches)<br>Shots per Match: 13.3<br>Top Contributor: Borna Sosa (9 G+A)","<b>Dortmund<\/b> (Bundesliga)<br>Goals per Match: <b>2.38<\/b> (81 in 34 matches)<br>Shots per Match: 13<br>Top Contributor: Erling Haaland (30 G+A)","<b>Köln<\/b> (Bundesliga)<br>Goals per Match: <b>1.53<\/b> (52 in 34 matches)<br>Shots per Match: 13.8<br>Top Contributor: Anthony Modeste (24 G+A)","<b>Arminia<\/b> (Bundesliga)<br>Goals per Match: <b>0.76<\/b> (26 in 34 matches)<br>Shots per Match: 10.7<br>Top Contributor: Masaya Okugawa (9 G+A)","<b>Hertha BSC<\/b> (Bundesliga)<br>Goals per Match: <b>1.03<\/b> (35 in 34 matches)<br>Shots per Match: 10.9<br>Top Contributor: Ishak Belfodil (7 G+A)","<b>Bochum<\/b> (Bundesliga)<br>Goals per Match: <b>1.09<\/b> (37 in 34 matches)<br>Shots per Match: 12.1<br>Top Contributor: Sebastian Polter (11 G+A)","<b>Wolfsburg<\/b> (Bundesliga)<br>Goals per Match: <b>1.24<\/b> (42 in 34 matches)<br>Shots per Match: 12.5<br>Top Contributor: Ridle Baku (8 G+A)","<b>Union Berlin<\/b> (Bundesliga)<br>Goals per Match: <b>1.47<\/b> (50 in 34 matches)<br>Shots per Match: 12.1<br>Top Contributor: Taiwo Awoniyi (16 G+A)","<b>Mainz 05<\/b> (Bundesliga)<br>Goals per Match: <b>1.44<\/b> (49 in 34 matches)<br>Shots per Match: 13.6<br>Top Contributor: Jonathan Burkardt (14 G+A)","<b>Augsburg<\/b> (Bundesliga)<br>Goals per Match: <b>1.15<\/b> (39 in 34 matches)<br>Shots per Match: 10.7<br>Top Contributor: Michael Gregoritsch (9 G+A)","<b>M'Gladbach<\/b> (Bundesliga)<br>Goals per Match: <b>1.59<\/b> (54 in 34 matches)<br>Shots per Match: 14.6<br>Top Contributor: Jonas Hofmann (17 G+A)","<b>Bayern Munich<\/b> (Bundesliga)<br>Goals per Match: <b>2.71<\/b> (92 in 34 matches)<br>Shots per Match: 19.8<br>Top Contributor: Robert Lewandowski (38 G+A)","<b>Freiburg<\/b> (Bundesliga)<br>Goals per Match: <b>1.62<\/b> (55 in 34 matches)<br>Shots per Match: 13.6<br>Top Contributor: Vincenzo Grifo (16 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,41,138,1)","opacity":0.80000000000000004,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(231,41,138,1)"}},"hoveron":"points","name":"Bundesliga","legendgroup":"Bundesliga","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5291728353202343,1.9498871497549115,1.1302139474861324,0.99909026371128862,1.1323968158084898,1.4669570463746786,0.89068601896427568,0.6836774767674505,0.88827806130982945,1.5474082532003524,1.5270513730105013,1.1088742574136705,1.2412002490293235,0.84382420909218481,1.5823591539487243,1.7424897661097347,1.6631914959363638,2.1770356801506132,1.630031608371064,1.9533948258869349],"y":[5.0965086257457735,4.9828715840820221,5.0876610457524656,5.0920737078320233,5.1326090992521491,5.0287133021652695,5.0747667982149869,5.0144732182193543,4.8992616684362291,5.0724580178502947,5.0916089511010796,4.9842891249619425,5.1133163189422337,4.9906928947847335,5.0933913572505114,4.880145451473072,4.9803380803298207,5.036805148385465,4.8669818013999615,5.079578098971397],"text":["<b>Roma<\/b> (Serie A)<br>Goals per Match: <b>1.53<\/b> (58 in 38 matches)<br>Shots per Match: 15.7<br>Top Contributor: Tammy Abraham (21 G+A)","<b>Lazio<\/b> (Serie A)<br>Goals per Match: <b>1.95<\/b> (74 in 38 matches)<br>Shots per Match: 11.8<br>Top Contributor: Ciro Immobile (29 G+A)","<b>Bologna<\/b> (Serie A)<br>Goals per Match: <b>1.13<\/b> (43 in 38 matches)<br>Shots per Match: 11.6<br>Top Contributor: Marko Arnautovi? (15 G+A)","<b>Spezia<\/b> (Serie A)<br>Goals per Match: <b>1<\/b> (38 in 38 matches)<br>Shots per Match: 10.2<br>Top Contributor: Daniele Verde (14 G+A)","<b>Torino<\/b> (Serie A)<br>Goals per Match: <b>1.13<\/b> (43 in 38 matches)<br>Shots per Match: 12.4<br>Top Contributor: Andrea Belotti (9 G+A)","<b>Juventus<\/b> (Serie A)<br>Goals per Match: <b>1.47<\/b> (56 in 38 matches)<br>Shots per Match: 13.7<br>Top Contributor: Paulo Dybala (15 G+A)","<b>Cagliari<\/b> (Serie A)<br>Goals per Match: <b>0.89<\/b> (34 in 38 matches)<br>Shots per Match: 11<br>Top Contributor: João Pedro (17 G+A)","<b>Genoa<\/b> (Serie A)<br>Goals per Match: <b>0.68<\/b> (26 in 38 matches)<br>Shots per Match: 10.6<br>Top Contributor: Mattia Destro (10 G+A)","<b>Venezia<\/b> (Serie A)<br>Goals per Match: <b>0.89<\/b> (34 in 38 matches)<br>Shots per Match: 9.3<br>Top Contributor: Mattia Aramu (12 G+A)","<b>Fiorentina<\/b> (Serie A)<br>Goals per Match: <b>1.55<\/b> (59 in 38 matches)<br>Shots per Match: 13.2<br>Top Contributor: Duan Vlahovi? (19 G+A)","<b>Udinese<\/b> (Serie A)<br>Goals per Match: <b>1.53<\/b> (58 in 38 matches)<br>Shots per Match: 13.3<br>Top Contributor: Gerard Deulofeu (18 G+A)","<b>Sampdoria<\/b> (Serie A)<br>Goals per Match: <b>1.11<\/b> (42 in 38 matches)<br>Shots per Match: 10.2<br>Top Contributor: Antonio Candreva (17 G+A)","<b>Empoli<\/b> (Serie A)<br>Goals per Match: <b>1.24<\/b> (47 in 38 matches)<br>Shots per Match: 13<br>Top Contributor: Andrea Pinamonti (15 G+A)","<b>Salernitana<\/b> (Serie A)<br>Goals per Match: <b>0.84<\/b> (32 in 38 matches)<br>Shots per Match: 11.3<br>Top Contributor: Federico Bonazzoli (10 G+A)","<b>Sassuolo<\/b> (Serie A)<br>Goals per Match: <b>1.58<\/b> (60 in 38 matches)<br>Shots per Match: 14.9<br>Top Contributor: Domenico Berardi (29 G+A)","<b>Milan<\/b> (Serie A)<br>Goals per Match: <b>1.74<\/b> (66 in 38 matches)<br>Shots per Match: 15.6<br>Top Contributor: Rafael Leão (21 G+A)","<b>Hellas Verona<\/b> (Serie A)<br>Goals per Match: <b>1.66<\/b> (63 in 38 matches)<br>Shots per Match: 12<br>Top Contributor: Giovanni Simeone (22 G+A)","<b>Inter<\/b> (Serie A)<br>Goals per Match: <b>2.18<\/b> (83 in 38 matches)<br>Shots per Match: 17.6<br>Top Contributor: Lautaro Martínez (24 G+A)","<b>Atalanta<\/b> (Serie A)<br>Goals per Match: <b>1.63<\/b> (62 in 38 matches)<br>Shots per Match: 15.7<br>Top Contributor: Mario Paali? (19 G+A)","<b>Napoli<\/b> (Serie A)<br>Goals per Match: <b>1.95<\/b> (74 in 38 matches)<br>Shots per Match: 14.9<br>Top Contributor: Lorenzo Insigne (19 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(102,166,30,1)","opacity":0.80000000000000004,"size":9.8267716535433092,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(102,166,30,1)"}},"hoveron":"points","name":"Serie A","legendgroup":"Serie A","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.098381070983812,"r":7.9701120797011216,"b":40.647571606475722,"l":101.22042341220428},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"title":{"text":"Club Scoring Rate Across Europe's Top Five Leagues (2021–2022)","font":{"color":"rgba(0,0,0,1)","family":"","size":19.128268991282692},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.44185364353312184,2.8210734858044422],"tickmode":"array","ticktext":["0.5","1.0","1.5","2.0","2.5"],"tickvals":[0.5,1,1.5,2,2.5],"categoryorder":"array","categoryarray":["0.5","1.0","1.5","2.0","2.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919278,"zeroline":false,"anchor":"y","title":{"text":"Squad Goals Scored per Match","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,5.5999999999999996],"tickmode":"array","ticktext":["La Liga","Premier League","Ligue 1","Bundesliga","Serie A"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["La Liga","Premier League","Ligue 1","Bundesliga","Serie A"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919278,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218}},"hovermode":"closest","height":430,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"16087791eb282":{"x":{},"y":{},"colour":{},"type":"box"},"160872f47ed14":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"16087791eb282","visdat":{"16087791eb282":["function (y) ","x"],"160872f47ed14":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="pressing-intensity-vs.-scoring-output-across-all-98-clubs" class="level2">
+<h2 class="anchored" data-anchor-id="pressing-intensity-vs.-scoring-output-across-all-98-clubs">2. Pressing Intensity vs.&nbsp;Scoring Output Across All 98 Clubs</h2>
+<p>Do teams score more by pressing opponents high up the pitch, or by dominating possession? Plotting <strong>presses per match</strong> against <strong>goals per match</strong> highlights a striking tactical divide: possession powerhouses like <strong>Manchester City</strong> (2.53 goals/match, just 111.3 presses/match) rarely need to press because they keep the ball, whereas <strong>Liverpool</strong>, <strong>Bayern Munich</strong>, and <strong>RB Leipzig</strong> combine relentless pressing with elite scoring. Hover over any dot to inspect a club, or click league names in the legend to isolate specific competitions.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-10c9e78748d83946feb6" style="width:100%;height:483px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-10c9e78748d83946feb6">{"x":{"data":[{"x":[165.69999999999999,175.19999999999999,156.90000000000001,150.30000000000001,145,155.19999999999999,151.90000000000001,167.69999999999999,167.40000000000001,149,166.80000000000001,162.19999999999999,157.09999999999999,164.90000000000001,165.59999999999999,153.09999999999999,148,141.69999999999999],"y":[0.76000000000000001,1.26,2.1200000000000001,1.6200000000000001,2.21,1.1799999999999999,2.3799999999999999,1.53,0.76000000000000001,1.03,1.0900000000000001,1.24,1.47,1.4399999999999999,1.1499999999999999,1.5900000000000001,2.71,1.6200000000000001],"text":["<b>Greuther Fürth<\/b> (Bundesliga)<br>Goals per Match: <b>0.76<\/b> (26 total goals)<br>Presses per Match: 165.7<br>Players with 5+ Goals: 2<br>Top Star: Branimir Hrgota (14 G+A)","<b>Eint Frankfurt<\/b> (Bundesliga)<br>Goals per Match: <b>1.26<\/b> (43 total goals)<br>Presses per Match: 175.2<br>Players with 5+ Goals: 2<br>Top Star: Filip Kosti? (13 G+A)","<b>RB Leipzig<\/b> (Bundesliga)<br>Goals per Match: <b>2.12<\/b> (72 total goals)<br>Presses per Match: 156.9<br>Players with 5+ Goals: 5<br>Top Star: Christopher Nkunku (33 G+A)","<b>Hoffenheim<\/b> (Bundesliga)<br>Goals per Match: <b>1.62<\/b> (55 total goals)<br>Presses per Match: 150.3<br>Players with 5+ Goals: 4<br>Top Star: Andrej Kramari? (15 G+A)","<b>Leverkusen<\/b> (Bundesliga)<br>Goals per Match: <b>2.21<\/b> (75 total goals)<br>Presses per Match: 145<br>Players with 5+ Goals: 4<br>Top Star: Patrik Schick (27 G+A)","<b>Stuttgart<\/b> (Bundesliga)<br>Goals per Match: <b>1.18<\/b> (40 total goals)<br>Presses per Match: 155.2<br>Players with 5+ Goals: 1<br>Top Star: Borna Sosa (9 G+A)","<b>Dortmund<\/b> (Bundesliga)<br>Goals per Match: <b>2.38<\/b> (81 total goals)<br>Presses per Match: 151.9<br>Players with 5+ Goals: 5<br>Top Star: Erling Haaland (30 G+A)","<b>Köln<\/b> (Bundesliga)<br>Goals per Match: <b>1.53<\/b> (52 total goals)<br>Presses per Match: 167.7<br>Players with 5+ Goals: 2<br>Top Star: Anthony Modeste (24 G+A)","<b>Arminia<\/b> (Bundesliga)<br>Goals per Match: <b>0.76<\/b> (26 total goals)<br>Presses per Match: 167.4<br>Players with 5+ Goals: 1<br>Top Star: Masaya Okugawa (9 G+A)","<b>Hertha BSC<\/b> (Bundesliga)<br>Goals per Match: <b>1.03<\/b> (35 total goals)<br>Presses per Match: 149<br>Players with 5+ Goals: 3<br>Top Star: Ishak Belfodil (7 G+A)","<b>Bochum<\/b> (Bundesliga)<br>Goals per Match: <b>1.09<\/b> (37 total goals)<br>Presses per Match: 166.8<br>Players with 5+ Goals: 2<br>Top Star: Sebastian Polter (11 G+A)","<b>Wolfsburg<\/b> (Bundesliga)<br>Goals per Match: <b>1.24<\/b> (42 total goals)<br>Presses per Match: 162.2<br>Players with 5+ Goals: 4<br>Top Star: Ridle Baku (8 G+A)","<b>Union Berlin<\/b> (Bundesliga)<br>Goals per Match: <b>1.47<\/b> (50 total goals)<br>Presses per Match: 157.1<br>Players with 5+ Goals: 3<br>Top Star: Taiwo Awoniyi (16 G+A)","<b>Mainz 05<\/b> (Bundesliga)<br>Goals per Match: <b>1.44<\/b> (49 total goals)<br>Presses per Match: 164.9<br>Players with 5+ Goals: 3<br>Top Star: Jonathan Burkardt (14 G+A)","<b>Augsburg<\/b> (Bundesliga)<br>Goals per Match: <b>1.15<\/b> (39 total goals)<br>Presses per Match: 165.6<br>Players with 5+ Goals: 3<br>Top Star: Michael Gregoritsch (9 G+A)","<b>M'Gladbach<\/b> (Bundesliga)<br>Goals per Match: <b>1.59<\/b> (54 total goals)<br>Presses per Match: 153.1<br>Players with 5+ Goals: 3<br>Top Star: Jonas Hofmann (17 G+A)","<b>Bayern Munich<\/b> (Bundesliga)<br>Goals per Match: <b>2.71<\/b> (92 total goals)<br>Presses per Match: 148<br>Players with 5+ Goals: 6<br>Top Star: Robert Lewandowski (38 G+A)","<b>Freiburg<\/b> (Bundesliga)<br>Goals per Match: <b>1.62<\/b> (55 total goals)<br>Presses per Match: 141.7<br>Players with 5+ Goals: 5<br>Top Star: Vincenzo Grifo (16 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":0.78000000000000003,"size":[8.658876656639265,14.014536572769716,19.362918899972261,16.503313308172697,19.814704959191001,13.291129997191497,20.682088648817309,15.929008832747034,8.658876656639265,11.944240249962659,12.507972573575447,13.779217553629952,15.530556287355989,15.326174979416292,13.037441547526971,16.314802357248755,22.166323803875812,16.503313308172697],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(228,26,28,1)"}},"hoveron":"points","name":"Bundesliga","legendgroup":"Bundesliga","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[144.59999999999999,125.5,154.90000000000001,143.80000000000001,138.09999999999999,161,167.5,161.19999999999999,140,127.09999999999999,127.5,162.5,159.19999999999999,141.90000000000001,145.5,139,146.69999999999999,133.69999999999999,140.40000000000001,142.80000000000001],"y":[1.1299999999999999,1.3400000000000001,0.76000000000000001,1.05,1.79,1,1.1100000000000001,0.92000000000000004,1.6100000000000001,2.1099999999999999,1.6299999999999999,1.1799999999999999,0.83999999999999997,0.87,0.96999999999999997,1.03,1.3400000000000001,1.03,1.05,1.6599999999999999],"text":["<b>Granada<\/b> (La Liga)<br>Goals per Match: <b>1.13<\/b> (43 total goals)<br>Presses per Match: 144.6<br>Players with 5+ Goals: 3<br>Top Star: Jorge Molina (15 G+A)","<b>Sevilla<\/b> (La Liga)<br>Goals per Match: <b>1.34<\/b> (51 total goals)<br>Presses per Match: 125.5<br>Players with 5+ Goals: 5<br>Top Star: Rafa Mir (10 G+A)","<b>Alavés<\/b> (La Liga)<br>Goals per Match: <b>0.76<\/b> (29 total goals)<br>Presses per Match: 154.9<br>Players with 5+ Goals: 2<br>Top Star: Joselu (18 G+A)","<b>Athletic Club<\/b> (La Liga)<br>Goals per Match: <b>1.05<\/b> (40 total goals)<br>Presses per Match: 143.8<br>Players with 5+ Goals: 3<br>Top Star: Iker Muniain (14 G+A)","<b>Barcelona<\/b> (La Liga)<br>Goals per Match: <b>1.79<\/b> (68 total goals)<br>Presses per Match: 138.1<br>Players with 5+ Goals: 3<br>Top Star: Ousmane Dembélé (14 G+A)","<b>Rayo Vallecano<\/b> (La Liga)<br>Goals per Match: <b>1<\/b> (38 total goals)<br>Presses per Match: 161<br>Players with 5+ Goals: 3<br>Top Star: Óscar Trejo (12 G+A)","<b>Celta Vigo<\/b> (La Liga)<br>Goals per Match: <b>1.11<\/b> (42 total goals)<br>Presses per Match: 167.5<br>Players with 5+ Goals: 2<br>Top Star: Iago Aspas (22 G+A)","<b>Cádiz<\/b> (La Liga)<br>Goals per Match: <b>0.92<\/b> (35 total goals)<br>Presses per Match: 161.2<br>Players with 5+ Goals: 2<br>Top Star: Anthony Lozano (9 G+A)","<b>Betis<\/b> (La Liga)<br>Goals per Match: <b>1.61<\/b> (61 total goals)<br>Presses per Match: 140<br>Players with 5+ Goals: 6<br>Top Star: Juanmi (20 G+A)","<b>Real Madrid<\/b> (La Liga)<br>Goals per Match: <b>2.11<\/b> (80 total goals)<br>Presses per Match: 127.1<br>Players with 5+ Goals: 3<br>Top Star: Karim Benzema (39 G+A)","<b>Villarreal<\/b> (La Liga)<br>Goals per Match: <b>1.63<\/b> (62 total goals)<br>Presses per Match: 127.5<br>Players with 5+ Goals: 6<br>Top Star: Arnaut Groeneveld (13 G+A)","<b>Valencia<\/b> (La Liga)<br>Goals per Match: <b>1.18<\/b> (45 total goals)<br>Presses per Match: 162.5<br>Players with 5+ Goals: 4<br>Top Star: Gonçalo Guedes (17 G+A)","<b>Getafe<\/b> (La Liga)<br>Goals per Match: <b>0.84<\/b> (32 total goals)<br>Presses per Match: 159.2<br>Players with 5+ Goals: 2<br>Top Star: Enes Ünal (17 G+A)","<b>Mallorca<\/b> (La Liga)<br>Goals per Match: <b>0.87<\/b> (33 total goals)<br>Presses per Match: 141.9<br>Players with 5+ Goals: 2<br>Top Star: Vedat Muriqi (8 G+A)","<b>Osasuna<\/b> (La Liga)<br>Goals per Match: <b>0.97<\/b> (37 total goals)<br>Presses per Match: 145.5<br>Players with 5+ Goals: 3<br>Top Star: Ante Budimir (10 G+A)","<b>Elche<\/b> (La Liga)<br>Goals per Match: <b>1.03<\/b> (39 total goals)<br>Presses per Match: 139<br>Players with 5+ Goals: 3<br>Top Star: Fidel (11 G+A)","<b>Levante<\/b> (La Liga)<br>Goals per Match: <b>1.34<\/b> (51 total goals)<br>Presses per Match: 146.7<br>Players with 5+ Goals: 3<br>Top Star: José Luis Morales (20 G+A)","<b>Espanyol<\/b> (La Liga)<br>Goals per Match: <b>1.03<\/b> (39 total goals)<br>Presses per Match: 133.7<br>Players with 5+ Goals: 1<br>Top Star: Raúl de Tomás (20 G+A)","<b>Real Sociedad<\/b> (La Liga)<br>Goals per Match: <b>1.05<\/b> (40 total goals)<br>Presses per Match: 140.4<br>Players with 5+ Goals: 2<br>Top Star: Mikel Oyarzabal (12 G+A)","<b>Atlético Madrid<\/b> (La Liga)<br>Goals per Match: <b>1.66<\/b> (63 total goals)<br>Presses per Match: 142.8<br>Players with 5+ Goals: 5<br>Top Star: Ángel Correa (17 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":0.78000000000000003,"size":[14.014536572769716,15.731443125045846,9.9514702180363539,13.291129997191497,18.739328613591081,12.776602744620915,13.779217553629952,11.944240249962659,17.580410897767965,20.540642136252057,17.751857015948875,14.469645825812371,11.016771838158148,11.338582677165356,12.507972573575447,13.037441547526971,15.731443125045846,13.037441547526971,13.291129997191497,17.92122476890939],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(55,126,184,1)"}},"hoveron":"points","name":"La Liga","legendgroup":"La Liga","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[157.09999999999999,154.90000000000001,168.5,163.40000000000001,143.59999999999999,163.59999999999999,150.5,165.80000000000001,168.19999999999999,151.5,160.59999999999999,155.69999999999999,126,138.90000000000001,139.80000000000001,151.80000000000001,156.59999999999999,140.59999999999999,133.40000000000001,142.69999999999999],"y":[1.1100000000000001,0.94999999999999996,0.89000000000000001,1.0800000000000001,2.1299999999999999,1.3899999999999999,1.3200000000000001,1.26,1.6299999999999999,1.47,0.87,1.0800000000000001,1.6100000000000001,1.3700000000000001,1.1799999999999999,1.71,0.92000000000000004,1.5800000000000001,2.3199999999999998,1.26],"text":["<b>Reims<\/b> (Ligue 1)<br>Goals per Match: <b>1.11<\/b> (42 total goals)<br>Presses per Match: 157.1<br>Players with 5+ Goals: 2<br>Top Star: Hugo Ekitike (13 G+A)","<b>Clermont Foot<\/b> (Ligue 1)<br>Goals per Match: <b>0.95<\/b> (36 total goals)<br>Presses per Match: 154.9<br>Players with 5+ Goals: 2<br>Top Star: Mohamed Bayo (19 G+A)","<b>Lorient<\/b> (Ligue 1)<br>Goals per Match: <b>0.89<\/b> (34 total goals)<br>Presses per Match: 168.5<br>Players with 5+ Goals: 3<br>Top Star: Terem Moffi (12 G+A)","<b>Saint-Étienne<\/b> (Ligue 1)<br>Goals per Match: <b>1.08<\/b> (41 total goals)<br>Presses per Match: 163.4<br>Players with 5+ Goals: 2<br>Top Star: Denis Bouanga (15 G+A)","<b>Rennes<\/b> (Ligue 1)<br>Goals per Match: <b>2.13<\/b> (81 total goals)<br>Presses per Match: 143.6<br>Players with 5+ Goals: 6<br>Top Star: Martin Terrier (24 G+A)","<b>Nantes<\/b> (Ligue 1)<br>Goals per Match: <b>1.39<\/b> (53 total goals)<br>Presses per Match: 163.6<br>Players with 5+ Goals: 5<br>Top Star: Randal Kolo Muani (16 G+A)","<b>Bordeaux<\/b> (Ligue 1)<br>Goals per Match: <b>1.32<\/b> (50 total goals)<br>Presses per Match: 150.5<br>Players with 5+ Goals: 3<br>Top Star: Hwang Ui-jo (13 G+A)","<b>Brest<\/b> (Ligue 1)<br>Goals per Match: <b>1.26<\/b> (48 total goals)<br>Presses per Match: 165.8<br>Players with 5+ Goals: 4<br>Top Star: Franck Honorat (15 G+A)","<b>Monaco<\/b> (Ligue 1)<br>Goals per Match: <b>1.63<\/b> (62 total goals)<br>Presses per Match: 168.2<br>Players with 5+ Goals: 3<br>Top Star: Wissam Ben Yedder (30 G+A)","<b>Strasbourg<\/b> (Ligue 1)<br>Goals per Match: <b>1.47<\/b> (56 total goals)<br>Presses per Match: 151.5<br>Players with 5+ Goals: 4<br>Top Star: Ludovic Ajorque (20 G+A)","<b>Metz<\/b> (Ligue 1)<br>Goals per Match: <b>0.87<\/b> (33 total goals)<br>Presses per Match: 160.6<br>Players with 5+ Goals: 1<br>Top Star: Nicolas de Préville (7 G+A)","<b>Angers<\/b> (Ligue 1)<br>Goals per Match: <b>1.08<\/b> (41 total goals)<br>Presses per Match: 155.7<br>Players with 5+ Goals: 3<br>Top Star: Sofiane Boufal (12 G+A)","<b>Marseille<\/b> (Ligue 1)<br>Goals per Match: <b>1.61<\/b> (61 total goals)<br>Presses per Match: 126<br>Players with 5+ Goals: 5<br>Top Star: Dimitri Payet (22 G+A)","<b>Nice<\/b> (Ligue 1)<br>Goals per Match: <b>1.37<\/b> (52 total goals)<br>Presses per Match: 138.9<br>Players with 5+ Goals: 3<br>Top Star: Amine Gouiri (19 G+A)","<b>Lille<\/b> (Ligue 1)<br>Goals per Match: <b>1.18<\/b> (45 total goals)<br>Presses per Match: 139.8<br>Players with 5+ Goals: 1<br>Top Star: Jonathan David (15 G+A)","<b>Lyon<\/b> (Ligue 1)<br>Goals per Match: <b>1.71<\/b> (65 total goals)<br>Presses per Match: 151.8<br>Players with 5+ Goals: 4<br>Top Star: Moussa Dembélé (25 G+A)","<b>Troyes<\/b> (Ligue 1)<br>Goals per Match: <b>0.92<\/b> (35 total goals)<br>Presses per Match: 156.6<br>Players with 5+ Goals: 2<br>Top Star: Xavier Chavalerin (7 G+A)","<b>Lens<\/b> (Ligue 1)<br>Goals per Match: <b>1.58<\/b> (60 total goals)<br>Presses per Match: 140.6<br>Players with 5+ Goals: 7<br>Top Star: Jonathan Clauss (16 G+A)","<b>Paris S-G<\/b> (Ligue 1)<br>Goals per Match: <b>2.32<\/b> (88 total goals)<br>Presses per Match: 133.4<br>Players with 5+ Goals: 6<br>Top Star: Kylian Mbappé (46 G+A)","<b>Montpellier<\/b> (Ligue 1)<br>Goals per Match: <b>1.26<\/b> (48 total goals)<br>Presses per Match: 142.7<br>Players with 5+ Goals: 4<br>Top Star: Téji Savanier (15 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":0.78000000000000003,"size":[13.779217553629952,12.230808103936214,11.647241572785385,13.538225754223411,20.682088648817309,16.123412877017589,15.530556287355989,15.118110236220474,17.751857015948875,16.689071831130203,11.338582677165356,13.538225754223411,17.580410897767965,15.929008832747034,14.469645825812371,18.254016117261177,11.944240249962659,17.406807970257599,21.640877957490176,15.118110236220474],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(77,175,74,1)"}},"hoveron":"points","name":"Ligue 1","legendgroup":"Ligue 1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[161.59999999999999,154.40000000000001,145.5,146.40000000000001,111.8,157.30000000000001,141.09999999999999,167,144.09999999999999,142.90000000000001,145.5,149.19999999999999,157.90000000000001,129.30000000000001,145,125.59999999999999,186.30000000000001,150.80000000000001,133.40000000000001,145.40000000000001],"y":[0.55000000000000004,1.0800000000000001,0.92000000000000004,1.21,2.5299999999999998,1.6299999999999999,2.4700000000000002,1.1100000000000001,1.6599999999999999,1.0800000000000001,1.97,1.05,1.3200000000000001,1.53,1.3200000000000001,1.5800000000000001,1.1100000000000001,0.87,1.47,0.83999999999999997],"text":["<b>Norwich City<\/b> (Premier League)<br>Goals per Match: <b>0.55<\/b> (21 total goals)<br>Presses per Match: 161.6<br>Players with 5+ Goals: 1<br>Top Star: Teemu Pukki (14 G+A)","<b>Southampton<\/b> (Premier League)<br>Goals per Match: <b>1.08<\/b> (41 total goals)<br>Presses per Match: 154.4<br>Players with 5+ Goals: 3<br>Top Star: James Ward-Prowse (15 G+A)","<b>Wolves<\/b> (Premier League)<br>Goals per Match: <b>0.92<\/b> (35 total goals)<br>Presses per Match: 145.5<br>Players with 5+ Goals: 2<br>Top Star: Raúl Jiménez (10 G+A)","<b>Brentford<\/b> (Premier League)<br>Goals per Match: <b>1.21<\/b> (46 total goals)<br>Presses per Match: 146.4<br>Players with 5+ Goals: 2<br>Top Star: Ivan Toney (17 G+A)","<b>Manchester City<\/b> (Premier League)<br>Goals per Match: <b>2.53<\/b> (96 total goals)<br>Presses per Match: 111.8<br>Players with 5+ Goals: 8<br>Top Star: Kevin De Bruyne (23 G+A)","<b>Leicester City<\/b> (Premier League)<br>Goals per Match: <b>1.63<\/b> (62 total goals)<br>Presses per Match: 157.3<br>Players with 5+ Goals: 6<br>Top Star: James Maddison (20 G+A)","<b>Liverpool<\/b> (Premier League)<br>Goals per Match: <b>2.47<\/b> (94 total goals)<br>Presses per Match: 141.1<br>Players with 5+ Goals: 5<br>Top Star: Mohamed Salah (36 G+A)","<b>Everton<\/b> (Premier League)<br>Goals per Match: <b>1.11<\/b> (42 total goals)<br>Presses per Match: 167<br>Players with 5+ Goals: 3<br>Top Star: Richarlison (15 G+A)","<b>Tottenham<\/b> (Premier League)<br>Goals per Match: <b>1.66<\/b> (63 total goals)<br>Presses per Match: 144.1<br>Players with 5+ Goals: 3<br>Top Star: Son Heung-min (30 G+A)","<b>Newcastle Utd<\/b> (Premier League)<br>Goals per Match: <b>1.08<\/b> (41 total goals)<br>Presses per Match: 142.9<br>Players with 5+ Goals: 3<br>Top Star: Allan Saint-Maximin (10 G+A)","<b>Chelsea<\/b> (Premier League)<br>Goals per Match: <b>1.97<\/b> (75 total goals)<br>Presses per Match: 145.5<br>Players with 5+ Goals: 6<br>Top Star: Mason Mount (21 G+A)","<b>Brighton<\/b> (Premier League)<br>Goals per Match: <b>1.05<\/b> (40 total goals)<br>Presses per Match: 149.2<br>Players with 5+ Goals: 4<br>Top Star: Leandro Trossard (11 G+A)","<b>Crystal Palace<\/b> (Premier League)<br>Goals per Match: <b>1.32<\/b> (50 total goals)<br>Presses per Match: 157.9<br>Players with 5+ Goals: 4<br>Top Star: Wilfried Zaha (15 G+A)","<b>West Ham<\/b> (Premier League)<br>Goals per Match: <b>1.53<\/b> (58 total goals)<br>Presses per Match: 129.3<br>Players with 5+ Goals: 6<br>Top Star: Jarrod Bowen (22 G+A)","<b>Aston Villa<\/b> (Premier League)<br>Goals per Match: <b>1.32<\/b> (50 total goals)<br>Presses per Match: 145<br>Players with 5+ Goals: 4<br>Top Star: Danny Ings (13 G+A)","<b>Arsenal<\/b> (Premier League)<br>Goals per Match: <b>1.58<\/b> (60 total goals)<br>Presses per Match: 125.6<br>Players with 5+ Goals: 6<br>Top Star: Bukayo Saka (18 G+A)","<b>Leeds United<\/b> (Premier League)<br>Goals per Match: <b>1.11<\/b> (42 total goals)<br>Presses per Match: 186.3<br>Players with 5+ Goals: 3<br>Top Star: Raphael Dias Belloli (14 G+A)","<b>Watford<\/b> (Premier League)<br>Goals per Match: <b>0.87<\/b> (33 total goals)<br>Presses per Match: 150.8<br>Players with 5+ Goals: 4<br>Top Star: Emmanuel Dennis (16 G+A)","<b>Manchester Utd<\/b> (Premier League)<br>Goals per Match: <b>1.47<\/b> (56 total goals)<br>Presses per Match: 133.4<br>Players with 5+ Goals: 3<br>Top Star: Cristiano Ronaldo (21 G+A)","<b>Burnley<\/b> (Premier League)<br>Goals per Match: <b>0.84<\/b> (32 total goals)<br>Presses per Match: 145.4<br>Players with 5+ Goals: 1<br>Top Star: Maxwel Cornet (10 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","opacity":0.78000000000000003,"size":[3.7795275590551185,13.538225754223411,11.944240249962659,14.690083827205527,22.677165354330711,17.751857015948875,22.423494282770069,13.779217553629952,17.92122476890939,13.538225754223411,19.814704959191001,13.291129997191497,15.530556287355989,17.052792129578254,15.530556287355989,17.406807970257599,13.779217553629952,11.338582677165356,16.689071831130203,11.016771838158148],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(152,78,163,1)"}},"hoveron":"points","name":"Premier League","legendgroup":"Premier League","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[157.90000000000001,135.5,142.40000000000001,157.90000000000001,140,138.59999999999999,141.40000000000001,168.59999999999999,157.09999999999999,132.69999999999999,148.59999999999999,141.19999999999999,154.5,142.30000000000001,135.59999999999999,161.59999999999999,141.59999999999999,128.5,147.40000000000001,142.5],"y":[1.53,1.95,1.1299999999999999,1,1.1299999999999999,1.47,0.89000000000000001,0.68000000000000005,0.89000000000000001,1.55,1.53,1.1100000000000001,1.24,0.83999999999999997,1.5800000000000001,1.74,1.6599999999999999,2.1800000000000002,1.6299999999999999,1.95],"text":["<b>Roma<\/b> (Serie A)<br>Goals per Match: <b>1.53<\/b> (58 total goals)<br>Presses per Match: 157.9<br>Players with 5+ Goals: 3<br>Top Star: Tammy Abraham (21 G+A)","<b>Lazio<\/b> (Serie A)<br>Goals per Match: <b>1.95<\/b> (74 total goals)<br>Presses per Match: 135.5<br>Players with 5+ Goals: 5<br>Top Star: Ciro Immobile (29 G+A)","<b>Bologna<\/b> (Serie A)<br>Goals per Match: <b>1.13<\/b> (43 total goals)<br>Presses per Match: 142.4<br>Players with 5+ Goals: 4<br>Top Star: Marko Arnautovi? (15 G+A)","<b>Spezia<\/b> (Serie A)<br>Goals per Match: <b>1<\/b> (38 total goals)<br>Presses per Match: 157.9<br>Players with 5+ Goals: 3<br>Top Star: Daniele Verde (14 G+A)","<b>Torino<\/b> (Serie A)<br>Goals per Match: <b>1.13<\/b> (43 total goals)<br>Presses per Match: 140<br>Players with 5+ Goals: 4<br>Top Star: Andrea Belotti (9 G+A)","<b>Juventus<\/b> (Serie A)<br>Goals per Match: <b>1.47<\/b> (56 total goals)<br>Presses per Match: 138.6<br>Players with 5+ Goals: 5<br>Top Star: Paulo Dybala (15 G+A)","<b>Cagliari<\/b> (Serie A)<br>Goals per Match: <b>0.89<\/b> (34 total goals)<br>Presses per Match: 141.4<br>Players with 5+ Goals: 2<br>Top Star: João Pedro (17 G+A)","<b>Genoa<\/b> (Serie A)<br>Goals per Match: <b>0.68<\/b> (26 total goals)<br>Presses per Match: 168.6<br>Players with 5+ Goals: 2<br>Top Star: Mattia Destro (10 G+A)","<b>Venezia<\/b> (Serie A)<br>Goals per Match: <b>0.89<\/b> (34 total goals)<br>Presses per Match: 157.1<br>Players with 5+ Goals: 3<br>Top Star: Mattia Aramu (12 G+A)","<b>Fiorentina<\/b> (Serie A)<br>Goals per Match: <b>1.55<\/b> (59 total goals)<br>Presses per Match: 132.7<br>Players with 5+ Goals: 3<br>Top Star: Duan Vlahovi? (19 G+A)","<b>Udinese<\/b> (Serie A)<br>Goals per Match: <b>1.53<\/b> (58 total goals)<br>Presses per Match: 148.6<br>Players with 5+ Goals: 4<br>Top Star: Gerard Deulofeu (18 G+A)","<b>Sampdoria<\/b> (Serie A)<br>Goals per Match: <b>1.11<\/b> (42 total goals)<br>Presses per Match: 141.2<br>Players with 5+ Goals: 3<br>Top Star: Antonio Candreva (17 G+A)","<b>Empoli<\/b> (Serie A)<br>Goals per Match: <b>1.24<\/b> (47 total goals)<br>Presses per Match: 154.5<br>Players with 5+ Goals: 4<br>Top Star: Andrea Pinamonti (15 G+A)","<b>Salernitana<\/b> (Serie A)<br>Goals per Match: <b>0.84<\/b> (32 total goals)<br>Presses per Match: 142.3<br>Players with 5+ Goals: 3<br>Top Star: Federico Bonazzoli (10 G+A)","<b>Sassuolo<\/b> (Serie A)<br>Goals per Match: <b>1.58<\/b> (60 total goals)<br>Presses per Match: 135.6<br>Players with 5+ Goals: 4<br>Top Star: Domenico Berardi (29 G+A)","<b>Milan<\/b> (Serie A)<br>Goals per Match: <b>1.74<\/b> (66 total goals)<br>Presses per Match: 161.6<br>Players with 5+ Goals: 7<br>Top Star: Rafael Leão (21 G+A)","<b>Hellas Verona<\/b> (Serie A)<br>Goals per Match: <b>1.66<\/b> (63 total goals)<br>Presses per Match: 141.6<br>Players with 5+ Goals: 3<br>Top Star: Giovanni Simeone (22 G+A)","<b>Inter<\/b> (Serie A)<br>Goals per Match: <b>2.18<\/b> (83 total goals)<br>Presses per Match: 128.5<br>Players with 5+ Goals: 7<br>Top Star: Lautaro Martínez (24 G+A)","<b>Atalanta<\/b> (Serie A)<br>Goals per Match: <b>1.63<\/b> (62 total goals)<br>Presses per Match: 147.4<br>Players with 5+ Goals: 4<br>Top Star: Mario Paali? (19 G+A)","<b>Napoli<\/b> (Serie A)<br>Goals per Match: <b>1.95<\/b> (74 total goals)<br>Presses per Match: 142.5<br>Players with 5+ Goals: 6<br>Top Star: Lorenzo Insigne (19 G+A)"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,127,0,1)","opacity":0.78000000000000003,"size":[17.052792129578254,19.665537276117785,14.014536572769716,12.776602744620915,14.014536572769716,16.689071831130203,11.647241572785385,8.658876656639265,11.647241572785385,17.230964726968583,17.052792129578254,13.779217553629952,14.906155422145321,11.016771838158148,17.406807970257599,18.417574851807561,17.92122476890939,20.961488752108163,17.751857015948875,19.665537276117785],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,127,0,1)"}},"hoveron":"points","name":"Serie A","legendgroup":"Serie A","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.098381070983812,"r":7.9701120797011216,"b":40.647571606475722,"l":47.023661270236623},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"title":{"text":"Club Pressing Intensity vs. Goals Scored per Match","font":{"color":"rgba(0,0,0,1)","family":"","size":19.128268991282692},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[108.075,190.02500000000001],"tickmode":"array","ticktext":["110","130","150","170","190"],"tickvals":[110,130,150,170,190],"categoryorder":"array","categoryarray":["110","130","150","170","190"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919289,"zeroline":false,"anchor":"y","title":{"text":"Team Defensive Presses per Match","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.44200000000000006,2.8180000000000001],"tickmode":"array","ticktext":["0.5","1.0","1.5","2.0","2.5"],"tickvals":[0.5,1,1.5,2,2.5],"categoryorder":"array","categoryarray":["0.5","1.0","1.5","2.0","2.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919278,"zeroline":false,"anchor":"x","title":{"text":"Team Goals Scored per Match","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218},"title":{"text":"League<br />Squad_Goals","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"orientation":"h","y":-0.17999999999999999},"hovermode":"closest","height":500,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"160877375675c":{"x":{},"y":{},"colour":{},"size":{},"text":{},"type":"scatter"}},"cur_data":"160877375675c","visdat":{"160877375675c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="star-dependence-vs.-shared-scoring-among-europes-top-15-attacks" class="level2">
+<h2 class="anchored" data-anchor-id="star-dependence-vs.-shared-scoring-among-europes-top-15-attacks">3. Star Dependence vs.&nbsp;Shared Scoring Among Europe’s Top 15 Attacks</h2>
+<p>Even among Europe’s highest-scoring clubs, goals are distributed very differently. <strong>Bayern Munich</strong> (2.71 goals/match) and <strong>Real Madrid</strong> (2.11 goals/match) leaned heavily on Ballon d’Or contenders Robert Lewandowski (35 league goals) and Karim Benzema (27 league goals), whereas <strong>Manchester City</strong> won the Premier League with <strong>eight different players scoring 5+ goals</strong> and no single player exceeding 15.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-f74ea049a595636aa8b7" style="width:100%;height:483px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f74ea049a595636aa8b7">{"x":{"data":[{"orientation":"v","width":[57,81,71,59,60,51,62,60,52,53,64,47,63,67,55],"base":[12.640000000000001,14.640000000000001,13.640000000000001,8.6400000000000006,11.640000000000001,6.6399999999999997,10.640000000000001,9.6400000000000006,2.6400000000000001,7.6399999999999997,5.6399999999999997,3.6400000000000001,4.6399999999999997,1.6400000000000001,0.64000000000000001],"x":[63.5,55.5,58.5,51.5,58,49.5,52,51,46,53.5,43,50.5,42.5,34.5,38.5],"y":[0.71999999999999886,0.71999999999999886,0.71999999999999886,0.71999999999999886,0.71999999999999886,0.72000000000000064,0.71999999999999886,0.71999999999999886,0.71999999999999975,0.71999999999999975,0.72000000000000064,0.7200000000000002,0.72000000000000064,0.71999999999999975,0.71999999999999986],"text":["<b>Bayern Munich<\/b><br>Rest of Squad: 57 Goals<br>Players with 5+ Goals: 6","<b>Manchester City<\/b><br>Rest of Squad: 81 Goals<br>Players with 5+ Goals: 8","<b>Liverpool<\/b><br>Rest of Squad: 71 Goals<br>Players with 5+ Goals: 5","<b>Dortmund<\/b><br>Rest of Squad: 59 Goals<br>Players with 5+ Goals: 5","<b>Paris S-G<\/b><br>Rest of Squad: 60 Goals<br>Players with 5+ Goals: 6","<b>Leverkusen<\/b><br>Rest of Squad: 51 Goals<br>Players with 5+ Goals: 4","<b>Inter<\/b><br>Rest of Squad: 62 Goals<br>Players with 5+ Goals: 7","<b>Rennes<\/b><br>Rest of Squad: 60 Goals<br>Players with 5+ Goals: 6","<b>RB Leipzig<\/b><br>Rest of Squad: 52 Goals<br>Players with 5+ Goals: 5","<b>Real Madrid<\/b><br>Rest of Squad: 53 Goals<br>Players with 5+ Goals: 3","<b>Chelsea<\/b><br>Rest of Squad: 64 Goals<br>Players with 5+ Goals: 6","<b>Lazio<\/b><br>Rest of Squad: 47 Goals<br>Players with 5+ Goals: 5","<b>Napoli<\/b><br>Rest of Squad: 63 Goals<br>Players with 5+ Goals: 6","<b>Barcelona<\/b><br>Rest of Squad: 67 Goals<br>Players with 5+ Goals: 3","<b>Milan<\/b><br>Rest of Squad: 55 Goals<br>Players with 5+ Goals: 7"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(107,174,214,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Rest of Squad Goals","legendgroup":"Rest of Squad Goals","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[35,15,23,22,28,24,21,21,20,27,11,27,11,1,11],"base":[12.640000000000001,14.640000000000001,13.640000000000001,8.6400000000000006,11.640000000000001,6.6399999999999997,10.640000000000001,9.6400000000000006,2.6400000000000001,7.6399999999999997,5.6399999999999997,3.6400000000000001,4.6399999999999997,1.6400000000000001,0.64000000000000001],"x":[17.5,7.5,11.5,11,14,12,10.5,10.5,10,13.5,5.5,13.5,5.5,0.5,5.5],"y":[0.71999999999999886,0.71999999999999886,0.71999999999999886,0.71999999999999886,0.71999999999999886,0.72000000000000064,0.71999999999999886,0.71999999999999886,0.71999999999999975,0.71999999999999975,0.72000000000000064,0.7200000000000002,0.72000000000000064,0.71999999999999975,0.71999999999999986],"text":["<b>Bayern Munich<\/b><br>Top Star: Robert Lewandowski (35 Goals, 38 G+A)","<b>Manchester City<\/b><br>Top Star: Kevin De Bruyne (15 Goals, 23 G+A)","<b>Liverpool<\/b><br>Top Star: Mohamed Salah (23 Goals, 36 G+A)","<b>Dortmund<\/b><br>Top Star: Erling Haaland (22 Goals, 30 G+A)","<b>Paris S-G<\/b><br>Top Star: Kylian Mbappé (28 Goals, 46 G+A)","<b>Leverkusen<\/b><br>Top Star: Patrik Schick (24 Goals, 27 G+A)","<b>Inter<\/b><br>Top Star: Lautaro Martínez (21 Goals, 24 G+A)","<b>Rennes<\/b><br>Top Star: Martin Terrier (21 Goals, 24 G+A)","<b>RB Leipzig<\/b><br>Top Star: Christopher Nkunku (20 Goals, 33 G+A)","<b>Real Madrid<\/b><br>Top Star: Karim Benzema (27 Goals, 39 G+A)","<b>Chelsea<\/b><br>Top Star: Mason Mount (11 Goals, 21 G+A)","<b>Lazio<\/b><br>Top Star: Ciro Immobile (27 Goals, 29 G+A)","<b>Napoli<\/b><br>Top Star: Lorenzo Insigne (11 Goals, 19 G+A)","<b>Barcelona<\/b><br>Top Star: Ousmane Dembélé (1 Goals, 14 G+A)","<b>Milan<\/b><br>Top Star: Rafael Leão (11 Goals, 21 G+A)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(217,72,1,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Top Contributor's Goals","legendgroup":"Top Contributor's Goals","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":197.99086757990872},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Season Goals Breakdown: Top Star vs. Rest of Squad (Top 15 Clubs)","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342468},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.8000000000000007,100.8],"tickmode":"array","ticktext":["0","25","50","75","100"],"tickvals":[0,25,50,75,100],"categoryorder":"array","categoryarray":["0","25","50","75","100"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Total Player Goals in League Play (2021–2022)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,15.6],"tickmode":"array","ticktext":["Milan (Serie A)","Barcelona (La Liga)","RB Leipzig (Bundesliga)","Lazio (Serie A)","Napoli (Serie A)","Chelsea (Premier League)","Leverkusen (Bundesliga)","Real Madrid (La Liga)","Dortmund (Bundesliga)","Rennes (Ligue 1)","Inter (Serie A)","Paris S-G (Ligue 1)","Bayern Munich (Bundesliga)","Liverpool (Premier League)","Manchester City (Premier League)"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"categoryorder":"array","categoryarray":["Milan (Serie A)","Barcelona (La Liga)","RB Leipzig (Bundesliga)","Lazio (Serie A)","Napoli (Serie A)","Chelsea (Premier League)","Leverkusen (Bundesliga)","Real Madrid (La Liga)","Dortmund (Bundesliga)","Rennes (Ligue 1)","Inter (Serie A)","Paris S-G (Ligue 1)","Bayern Munich (Bundesliga)","Liverpool (Premier League)","Manchester City (Premier League)"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"orientation":"h","y":-0.16},"hovermode":"closest","height":500,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"16087646f5fe2":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"16087646f5fe2","visdat":{"16087646f5fe2":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
